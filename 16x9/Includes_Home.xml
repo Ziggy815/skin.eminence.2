@@ -464,8 +464,7 @@
                 <orientation>horizontal</orientation>
                 <!-- Hack for Extended Info and Notification property setting -->
                 <onclick>SetFocus(9000)</onclick>
-                <onclick condition="String.StartsWith(ListItem.Property(path),ActivateWindow) + !String.Contains(ListItem.Property(path),DialogFavourites) + !String.Contains(ListItem.Property(path),DialogButtonMenu) + !String.Contains(ListItem.Property(path),shutdownmenu) + !String.Contains(ListItem.Property(path),favourites)">SetProperty(FO9001,2,home)</onclick>
-                <onclick>$INFO[ListItem.Property(path)]</onclick>
+                <onclick condition="String.StartsWith(ListItem.Property(action),ActivateWindow) + !String.Contains(ListItem.Property(action),MyFavourites) + !String.Contains(ListItem.Property(action),DialogButtonMenu) + !String.Contains(ListItem.Property(action),shutdownmenu) + !String.Contains(ListItem.Property(action),favourites)">SetProperty(FO9001,2,home)</onclick>
                 <itemlayout width="374" height="69">
                     <control type="image">
                         <width>364</width>
@@ -499,7 +498,7 @@
                     </control>
                 </focusedlayout>
                 <content>
-                    <include>skinshortcuts-submenu</include>
+                    <include>skinshortcuts-mainmenu-submenu</include>
                 </content>
             </control>
         </control>
@@ -620,7 +619,7 @@
         </control>
         <control type="grouplist">
             <visible>Integer.IsGreater(Container(9001).NumItems,0)</visible>
-            <visible>![String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)]]] | !System.HasAddon(resource.images.weatherfanart.multi)</visible>
+            <visible>![String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)]]] | !System.HasAddon(resource.images.weatherfanart.multi)</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
             <animation effect="slide" start="0" end="-220" condition="!Container(9001).OnNext" reversible="false" time="200">Conditional</animation>
@@ -673,7 +672,7 @@
             <visible>!Container(9001).IsUpdating</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
-            <visible>[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)</visible>
+            <visible>[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)</visible>
             <include content="Object_WeatherOutlook">
                 <param name="day" value="Day0" />
                 <param name="dayname" value="$LOCALIZE[33006]" />

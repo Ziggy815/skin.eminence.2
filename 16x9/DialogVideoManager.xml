@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">50</defaultcontrol>
+    <controls>
+        <include>GlobalOverlay</include>
+        <control type="group">
+            <include>Animation_SlideIn</include>
+            <include>Animation_FadeOut</include>
+            <centerleft>50%</centerleft>
+            <width>1792</width>
+            <bottom>100</bottom>
+            <height>676</height>
+            <include>Dialog_Background</include>
+            <include content="Dialog_Top_IconHeader">
+                <param name="label" value="$INFO[Control.GetLabel(2)]" />
+                <param name="icon" value="special://skin/extras/icons/film.png" />
+            </include>
+            <control type="label" id="2">
+                <visible>false</visible>
+            </control>
+
+            <!-- Poster / Icon Preview -->
+            <control type="group">
+                <left>bigpad</left>
+                <top>80</top>
+                <bottom>bigpad</bottom>
+                <width>380</width>
+                <include>Object_FlatBackground</include>
+                <control type="image">
+                    <aspectratio>keep</aspectratio>
+                    <texture background="true" fallback="DefaultVideo.png">$INFO[Container(50).ListItem.Icon]</texture>
+                </control>
+            </control>
+
+            <!-- Versions / Extras List -->
+            <control type="group" id="100">
+                <left>420</left>
+                <top>80</top>
+                <bottom>bigpad</bottom>
+                <width>980</width>
+                <include>Object_FlatBackground</include>
+                <control type="list" id="50">
+                    <left>0</left>
+                    <top>0</top>
+                    <width>970</width>
+                    <bottom>40</bottom>
+                    <onup>50</onup>
+                    <ondown>50</ondown>
+                    <onleft>101</onleft>
+                    <onright>60</onright>
+                    <pagecontrol>60</pagecontrol>
+                    <scrolltime tween="quadratic">200</scrolltime>
+                    <itemlayout height="72" width="970">
+                        <control type="label">
+                            <left>30</left>
+                            <right>260</right>
+                            <top>0</top>
+                            <height>100%</height>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <right>30</right>
+                            <top>0</top>
+                            <height>100%</height>
+                            <align>right</align>
+                            <font>Font-ListInfo</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="72" width="970">
+                        <control type="image">
+                            <width>100%</width>
+                            <height>100%</height>
+                            <texture colordiffuse="$VAR[HighlightColor]">common/white.png</texture>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <right>260</right>
+                            <top>0</top>
+                            <height>100%</height>
+                            <textcolor>Selected</textcolor>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <left>30</left>
+                            <right>30</right>
+                            <top>0</top>
+                            <height>100%</height>
+                            <align>right</align>
+                            <font>Font-ListInfo</font>
+                            <textcolor>Selected</textcolor>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                    </focusedlayout>
+                </control>
+                <control type="scrollbar" id="60">
+                    <right>0</right>
+                    <top>0</top>
+                    <width>8</width>
+                    <bottom>40</bottom>
+                    <onleft>50</onleft>
+                    <onright>101</onright>
+                    <orientation>vertical</orientation>
+                </control>
+                <control type="label">
+                    <left>20</left>
+                    <right>20</right>
+                    <bottom>4</bottom>
+                    <height>32</height>
+                    <font>Font-LineLabel</font>
+                    <textcolor>SubLabel</textcolor>
+                    <scroll>true</scroll>
+                    <label>$INFO[Container(50).ListItem.DecodedFileNameAndPath]</label>
+                </control>
+            </control>
+
+            <!-- Action Buttons -->
+            <control type="group">
+                <left>1420</left>
+                <right>bigpad</right>
+                <top>80</top>
+                <bottom>bigpad</bottom>
+                <include>Object_FlatBackground</include>
+                <control type="grouplist" id="101">
+                    <left>0</left>
+                    <right>0</right>
+                    <top>0</top>
+                    <bottom>0</bottom>
+                    <itemgap>4</itemgap>
+                    <onleft condition="Integer.IsGreater(Container(50).NumItems,0)">50</onleft>
+                    <onright>50</onright>
+                    <onup>101</onup>
+                    <ondown>101</ondown>
+                    <orientation>vertical</orientation>
+                    <control type="button" id="21">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[208]</label>
+                        <include>Defs_OptionButton</include>
+                    </control>
+                    <control type="button" id="22">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[40014]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoversions)</visible>
+                    </control>
+                    <control type="button" id="23">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[40015]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoextras)</visible>
+                    </control>
+                    <control type="button" id="27">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[13511]</label>
+                        <include>Defs_OptionButton</include>
+                    </control>
+                    <control type="button" id="24">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[40004]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoversions)</visible>
+                    </control>
+                    <control type="button" id="28">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[118]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoextras)</visible>
+                    </control>
+                    <control type="button" id="26">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[15015]</label>
+                        <include>Defs_OptionButton</include>
+                    </control>
+                    <control type="button" id="29">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[40046]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoversions)</visible>
+                    </control>
+                    <control type="button" id="25">
+                        <width>100%</width>
+                        <height>60</height>
+                        <textoffsetx>20</textoffsetx>
+                        <label>$LOCALIZE[40023]</label>
+                        <include>Defs_OptionButton</include>
+                        <visible>Window.IsVisible(managevideoversions)</visible>
+                    </control>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

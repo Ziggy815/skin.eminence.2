@@ -51,6 +51,20 @@
         <pulseonselect>false</pulseonselect>
     </default>
 
+    <default type="colorbutton">
+        <font>Font-Button</font>
+        <colorposx>1350</colorposx>
+        <colorwidth>32</colorwidth>
+        <colorheight>32</colorheight>
+        <textoffsetx>30</textoffsetx>
+        <textcolor>ListLabel</textcolor>
+        <selectedcolor>$VAR[HighlightColor2]</selectedcolor>
+        <disabledcolor>Disabled</disabledcolor>
+        <texturecolormask>common/circle.png</texturecolormask>
+        <texturecolordisabledmask colordiffuse="Disabled">common/circle.png</texturecolordisabledmask>
+        <pulseonselect>false</pulseonselect>
+    </default>
+
     <default type="spincontrolex">
         <font>Font-Button</font>
         <pulseonselect>false</pulseonselect>

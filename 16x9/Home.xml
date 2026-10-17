@@ -3,7 +3,7 @@
     <!-- home -->
     <backgroundcolor>Background</backgroundcolor>
     <defaultcontrol always="true">9000</defaultcontrol>
-    <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|x1101|x1102|x1103|x1104|x1105|x1106|x1107|x1108|x1109|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu)</onload>
+    <onload>RunScript(script.skinshortcuts,type=buildxml)</onload>
     <onload condition="Skin.HasSetting(EnableColorFilter) + String.IsEmpty(Skin.String(global.background))">Skin.SetString(global.background,special://skin/extras/backgrounds/overlays/pattern0.jpg)</onload>
     <onload>ClearProperty(Header.Label,home)</onload>
     <onload>ClearProperty(Header.Icon,home)</onload>
@@ -18,16 +18,17 @@
     <onload condition="!String.IsEmpty(Skin.String(home.headertext))">SetProperty(Header.Label,$INFO[Skin.String(home.headertext)])</onload>
     <onunload>SetProperty(Header.Label,$INFO[Container(9000).ListItem.Label],home)</onunload>
     <onunload>SetProperty(Header.Icon,$INFO[Container(9000).ListItem.Icon],home)</onunload>
-    <onunload condition="!String.IsEmpty(Container(9000).ListItem.Property(TileColor))">SetProperty(HighlightColor,$INFO[Container(9000).ListItem.Property(TileColor)],home)</onunload>
+    <onunload condition="!String.IsEmpty(Container(9000).ListItem.Property(tilecolor))">SetProperty(HighlightColor,$INFO[Container(9000).ListItem.Property(tilecolor)],home)</onunload>
 
     <onload condition="!Integer.IsEqual(Window(Home).Property(WidgetRefresh),1)">SetProperty(WidgetRefresh,1,Home)</onload>
     <onload condition="Integer.IsEqual(Window(Home).Property(WidgetRefresh),1)">SetProperty(WidgetRefresh,2,Home)</onload>
-    <onload>SetProperty(TMDBHelper.WidgetContainer,9001)</onload>
-    <onunload>ClearProperty(TMDBHelper.WidgetContainer)</onunload>
+    <onload>SetProperty(TMDbHelper.WidgetContainer,9001,Home)</onload>
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
 
     <controls>
 
         <include>Furniture_Background</include>
+
         <include>Home_Widget_Control</include>
         <include>Furniture_TopBar</include>
 
@@ -37,7 +38,7 @@
             <posy>-20</posy>
             <width>1</width>
             <height>1</height>
-            <visible>true</visible>
+            <visible>String.IsEqual(Container(9000).ListItem.Property(background),playlistBackground) | String.IsEqual(Container(9000).ListItem.Property(backgroundType),playlist)</visible>
             <onup>50</onup>
             <ondown>50</ondown>
             <onleft>50</onleft>
@@ -47,7 +48,7 @@
             </itemlayout>
             <focusedlayout height="1" width="1">
             </focusedlayout>
-            <content>$INFO[Container(9000).ListItem.Property(backgroundPlaylist)]</content>
+            <content>$INFO[Container(9000).ListItem.Property(backgroundPath)]</content>
         </control>
 
         <include condition="Skin.HasSetting(home.hidewidgetbox)">Home_Widget_Hidden</include>

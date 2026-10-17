@@ -43,12 +43,42 @@
                 <onup condition="Skin.HasSetting(HorizontalMenus)">Close</onup>
                 <ondown condition="Skin.HasSetting(HorizontalMenus)">Close</ondown>
                 <include condition="Skin.HasSetting(HorizontalMenus)">Dialog_Top_GroupList</include>
-            </control>
 
-            <!-- Default Button -->
-            <control type="button" id="1000">
-                <include condition="!Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2_Horz</include>
-                <include condition="Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2</include>
+                <!-- Default Button Template -->
+                <control type="button" id="1000">
+                    <include condition="!Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2_Horz</include>
+                    <include condition="Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2</include>
+                </control>
+
+                <!-- TMDbHelper Extended Info Button -->
+                <control type="button" id="997">
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper) + !ListItem.IsParentFolder + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.DBType,director)]</visible>
+                    <label>TMDb Helper - $LOCALIZE[29915]</label>
+                    <include condition="!Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2_Horz</include>
+                    <include condition="Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2</include>
+                    <onclick>SetProperty(extinfo,2,home)</onclick>
+                    <onclick>SetProperty(1190_MainLabel,$VAR[Furniture_TopBar_Header_MainLabel],home)</onclick>
+                    <onclick>SetProperty(1190_SubLabel,$VAR[Furniture_TopBar_Header_SubLabel],home)</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.UniqueID(tmdb))">RunScript(plugin.video.themoviedb.helper,add_tmdb=$INFO[ListItem.UniqueID(tmdb)],tmdb_type=movie,call_auto=1190)</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.UniqueID(tmdb))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Title],tmdb_type=movie,call_auto=1190)</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.UniqueID(tmdb))">RunScript(plugin.video.themoviedb.helper,add_tmdb=$INFO[ListItem.UniqueID(tmdb)],tmdb_type=tv,call_auto=1190)</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,tvshow) + String.IsEmpty(ListItem.UniqueID(tmdb))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Title],tmdb_type=tv,call_auto=1190)</onclick>
+                    <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.UniqueID(tvshow.tmdb))">RunScript(plugin.video.themoviedb.helper,add_tmdb=$INFO[ListItem.UniqueID(tvshow.tmdb)],tmdb_type=tv,call_auto=1190)</onclick>
+                    <onclick condition="[String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + String.IsEmpty(ListItem.UniqueID(tvshow.tmdb))">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.TvShowTitle],tmdb_type=tv,call_auto=1190)</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.DBType,director)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,call_auto=1190)</onclick>
+                </control>
+
+                <!-- TMDbHelper Related Lists Menu Button -->
+                <control type="button" id="998">
+                    <visible>System.HasAddon(plugin.video.themoviedb.helper) + !ListItem.IsParentFolder + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.DBType,director)]</visible>
+                    <label>TMDb Helper - $LOCALIZE[31069]</label>
+                    <include condition="!Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2_Horz</include>
+                    <include condition="Skin.HasSetting(HorizontalMenus)">Defs_OptionButton2</include>
+                    <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=movie,tmdb_id=$INFO[ListItem.UniqueID(tmdb)],imdb_id=$INFO[ListItem.IMDBNumber],query=$INFO[ListItem.Title],year=$INFO[ListItem.Year])</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=tv,tmdb_id=$INFO[ListItem.UniqueID(tmdb)],tvdb_id=$INFO[ListItem.UniqueID(tvdb)],query=$INFO[ListItem.Title],year=$INFO[ListItem.Year])</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=tv,tmdb_id=$INFO[ListItem.UniqueID(tvshow.tmdb)],query=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode])</onclick>
+                    <onclick condition="String.IsEqual(ListItem.DBType,actor) | String.IsEqual(ListItem.DBType,director)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=person,query=$INFO[ListItem.Label])</onclick>
+                </control>
             </control>
         </control>
 

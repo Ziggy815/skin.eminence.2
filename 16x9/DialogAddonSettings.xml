@@ -98,6 +98,11 @@
                 <width>100%</width>
                 <include>Defs_OptionButton</include>
             </control>
+            <control type="colorbutton" id="15">
+                <width>100%</width>
+                <colorposx>addonsettingsradioposx</colorposx>
+                <include>Defs_OptionButton</include>
+            </control>
 
             <!-- Default Templates Category -->
             <control type="button" id="10">

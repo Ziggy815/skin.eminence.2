@@ -533,7 +533,7 @@
                     <align>left</align>
                     <textcolor>$VAR[HighlightColor2]</textcolor>
                     <font>Font-ListInfo-Small-Bold</font>
-                    <label>[UPPERCASE]$INFO[Player.FinishTime,$LOCALIZE[31071] ,][/UPPERCASE]</label>
+                    <label>[UPPERCASE]$VAR[Label_FinishTime][/UPPERCASE]</label>
                     <visible>Player.HasVideo</visible>
                 </control>
             </control>
@@ -1347,7 +1347,7 @@
         <control type="button" id="5">
             <description>Presets</description>
             <label>13388</label>
-            <onclick>ActivateWindow(visualisationpreset)</onclick>
+            <onclick>ActivateWindow(visualisationpresetlist)</onclick>
             <include>Defs_OSDButton</include>
         </control>
         <control type="button" id="6">
@@ -1385,18 +1385,8 @@
         <control type="button" id="4">
             <description>Extra Info</description>
             <label>31105</label>
-            <onclick>SetProperty(OSDExtendedInfo,1,Home)</onclick>
-            <onclick>SetProperty(1190_MainLabel,$VAR[Furniture_TopBar_Header_MainLabel],home)</onclick>
-            <onclick>SetProperty(1190_SubLabel,$VAR[Furniture_TopBar_Header_SubLabel],home)</onclick>
-            <onclick condition="!Player.Paused + !Skin.HasSetting(DontPauseOSD)">Pause</onclick>
             <onclick>Action(Close)</onclick>
-
-            <onclick condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.DBID)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Player.Title,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D],call_auto=1190,return)</onclick>
-            <onclick condition="[VideoPlayer.Content(tvshows) | VideoPlayer.Content(episodes)] + !String.IsEmpty(VideoPlayer.DBID)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[VideoPlayer.TvShowTitle,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D],call_auto=1190,return)</onclick>
-            <onclick condition="VideoPlayer.Content(movies) + String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;imdb_id=$INFO[VideoPlayer.IMDBNumber],call_auto=1190,return)</onclick>
-            <onclick condition="VideoPlayer.Content(movies) + String.IsEmpty(VideoPlayer.DBID) + !String.IsEmpty(VideoPlayer.IMDBNumber) + !String.StartsWith(VideoPlayer.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;tmdb_id=$INFO[VideoPlayer.IMDBNumber],call_auto=1190,return)</onclick>
-            <onclick condition="VideoPlayer.Content(movies) + String.IsEmpty(VideoPlayer.DBID) + String.IsEmpty(VideoPlayer.IMDBNumber)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;query=$INFO[Player.Title],call_auto=1190,return)</onclick>
-            <onclick condition="[VideoPlayer.Content(tvshows) | VideoPlayer.Content(episodes)] + String.IsEmpty(VideoPlayer.DBID)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=tv&amp;query=$INFO[VideoPlayer.TvShowTitle],call_auto=1190,return)</onclick>
+            <onclick>ActivateWindow(fullscreeninfo)</onclick>
             <include>Defs_OSDButton</include>
         </control>
         <control type="button" id="5">
@@ -1748,11 +1738,11 @@
                 <animation type="Hidden">
                     <effect type="fade" end="0" start="100" time="200" />
                 </animation>
-                <visible>[!Skin.HasSetting(OSDBlackScreen) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]] | Window.IsActive(musicosd) | Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
+                <visible>[!Skin.HasSetting(OSDBlackScreen) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]] | Window.IsActive(musicosd) | Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
                 <include>Furniture_TopBar_Clock</include>
             </control>
             <control type="group">
-                <visible>[!Skin.HasSetting(OSDBlackScreen) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]] | Window.IsActive(musicosd) | Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
+                <visible>[!Skin.HasSetting(OSDBlackScreen) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]] | Window.IsActive(musicosd) | Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
                 <include>Animation_FadeIn</include>
                 <include>Animation_FadeOut</include>
                 <include>Defs_ViewBackground</include>
@@ -1778,8 +1768,8 @@
                     <control type="group" description="info">
                         <left>posterh</left>
                         <right>0</right>
-                        <animation effect="slide" start="0" end="0,-64" time="200" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
-                        <animation effect="slide" start="0" end="0,-64" time="0" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + ![Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
+                        <animation effect="slide" start="0" end="0,-64" time="200" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
+                        <animation effect="slide" start="0" end="0,-64" time="0" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + ![Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
                         <control type="grouplist">
                             <top>400</top>
                             <left>40</left>
@@ -1995,16 +1985,15 @@
                 <effect type="fade" end="0" start="100" time="200" />
             </animation>
             <include content="Furniture_TopBar_HeaderText">
-                <visible>[!Skin.HasSetting(OSDNoInfo) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.Caching]] | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsVisible(musicosd) | Window.IsVisible(videoosd) | Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)</visible>
-                <visible></visible>
+                <visible>[!Skin.HasSetting(OSDNoInfo) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.Caching]] | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsVisible(musicosd) | Window.IsVisible(videoosd) | Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml)</visible>
             </include>
             <include content="Furniture_TopBar_HeaderTile">
-                <visible>[!Skin.HasSetting(OSDNoInfo) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.Caching]] | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsVisible(musicosd) | Window.IsVisible(videoosd) | Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogBusy.xml) | Window.IsActive(DialogVolumeBar.xml) | Player.Muted | !String.IsEmpty(Player.SeekNumeric)</visible>
+                <visible>[!Skin.HasSetting(OSDNoInfo) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.Caching]] | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsVisible(musicosd) | Window.IsVisible(videoosd) | Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogBusy.xml) | Window.IsActive(DialogVolumeBar.xml) | Player.Muted | !String.IsEmpty(Player.SeekNumeric)</visible>
             </include>
         </control>
 
         <control type="group">
-            <visible>Player.Caching | Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsActive(musicosd) | Window.IsActive(videoosd) | !String.IsEmpty(Player.SeekNumeric)</visible>
+            <visible>Player.Caching | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsVisible(DialogFullScreenInfo.xml) | Window.IsActive(musicosd) | Window.IsActive(videoosd) | !String.IsEmpty(Player.SeekNumeric)</visible>
             <animation effect="slide" start="0" end="0,-64" time="200" condition="[Window.IsVisible(musicosd) | Window.IsActive(videoosd)]">Conditional</animation>
             <animation effect="slide" start="0" end="0,-260" time="200" tween="quadratic" condition="[Window.IsVisible(DialogFullScreenInfo.xml) + Skin.HasSetting(videoosd.showinfo)] | [!String.IsEmpty(Window(home).Property(osdinfo)) + !Window.IsVisible(visualisation)]">Conditional</animation>
             <animation effect="slide" start="0,64" end="0" time="200" condition="Window.IsVisible(videoosd)">WindowOpen</animation>
@@ -2195,7 +2184,14 @@
                 <bottom>0</bottom>
                 <height>16</height>
                 <info>Player.Progress</info>
-                <visible>!Player.Seeking</visible>
+                <visible>!Player.Seeking + !VideoPlayer.Content(livetv)</visible>
+            </control>
+            <control type="progress">
+                <width>100%</width>
+                <bottom>0</bottom>
+                <height>16</height>
+                <info>PVR.EpgEventProgress</info>
+                <visible>!Player.Seeking + VideoPlayer.Content(livetv)</visible>
             </control>
             <control type="progress" id="401">
                 <width>100%</width>
@@ -2205,7 +2201,7 @@
             </control>
                 
             <control type="button">
-                <visible>Player.Seeking | Player.DisplayAfterSeek | Player.Forwarding | Player.Rewinding | [Skin.HasSetting(OSDNoInfo) + Player.Caching] | !String.IsEmpty(Player.SeekNumeric)</visible>
+                <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Forwarding | Player.Rewinding | [Skin.HasSetting(OSDNoInfo) + Player.Caching] | !String.IsEmpty(Player.SeekNumeric)</visible>
                 <include>Animation_FadeIn</include>
                 <animation effect="fade" start="100" end="0" time="200" delay="0">Hidden</animation>
                 <left>20</left>

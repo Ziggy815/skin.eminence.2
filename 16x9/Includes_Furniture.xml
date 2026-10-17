@@ -21,7 +21,7 @@
             <visible>![Window.IsVisible(script-skinshortcuts.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPictureInfo.xml) | Window.IsVisible(FileBrowser.xml) | Window.IsVisible(DialogConfirm.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | ControlGroup(9000).HasFocus()]</visible>
             <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
             <visible>!Window.IsVisible(script-globalsearch-main.xml) + !Window.IsVisible(script-globalsearch-infodialog.xml)</visible>
-            <visible>[!String.IsEmpty(Window(home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.StartsWith(ListItem.Path,videodb://movies/sets)]] | !String.IsEmpty(ListItem.Plot) | !String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description)) | !String.IsEmpty(ListItem.AddonDescription) | !String.IsEmpty(Window(Home).Property(TMDBbHelper.ListItem.Plot)) | Control.HasFocus(9601)</visible>
+            <visible>[!String.IsEmpty(Window(home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.StartsWith(ListItem.Path,videodb://movies/sets)]] | !String.IsEmpty(ListItem.Plot) | !String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description)) | !String.IsEmpty(ListItem.AddonDescription) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Plot)) | Control.HasFocus(9601)</visible>
             <include>Animation_FadeIn</include>
             <control type="image" description="Background">
                 <width>100%</width>
@@ -40,7 +40,7 @@
             <visible>![Window.IsVisible(script-skinshortcuts.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPictureInfo.xml) | Window.IsVisible(FileBrowser.xml) | Window.IsVisible(DialogConfirm.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | ControlGroup(9000).HasFocus()]</visible>
             <visible>!Window.IsVisible(DialogVideoInfo.xml)</visible>
             <visible>!Window.IsVisible(script-globalsearch-main.xml) + !Window.IsVisible(script-globalsearch-infodialog.xml)</visible>
-            <visible>[!String.IsEmpty(Window(home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.StartsWith(ListItem.Path,videodb://movies/sets)]] | !String.IsEmpty(ListItem.Plot) | !String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description)) | !String.IsEmpty(ListItem.AddonDescription) | !String.IsEmpty(Window(Home).Property(TMDBbHelper.ListItem.Plot)) | Control.HasFocus(9601)</visible>
+            <visible>[!String.IsEmpty(Window(home).Property(Set.Movies.ExtendedPlot)) + [Container.Content(Sets) | String.StartsWith(ListItem.Path,videodb://movies/sets)]] | !String.IsEmpty(ListItem.Plot) | !String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description)) | !String.IsEmpty(ListItem.AddonDescription) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Plot)) | Control.HasFocus(9601)</visible>
             <include>Animation_SlideIn</include>
 
             <control type="group">
@@ -322,18 +322,10 @@
             </control>
 
             <!-- IMDB Top 250 -->
-            <control type="image">
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <visible>!String.IsEmpty(ListItem.Top250)</visible>
-                <visible>String.IsEmpty(Window(home).Property(TMDBbHelper.ListItem.Top250))</visible>
-                <texture colordiffuse="LineLabel" fallback="indicator/fallback.png">indicator/imdb.png</texture>
-            </control>
             <control type="group">
                 <width>64</width>
                 <height>64</height>
-                <visible>!String.IsEmpty(Window(home).Property(TMDBbHelper.ListItem.Top250)) + Integer.IsGreater(Window(home).Property(TMDBbHelper.ListItem.Top250),0)</visible>
+                <visible>[!String.IsEmpty(ListItem.Top250) + Integer.IsGreater(ListItem.Top250,0)] | [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250)) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Top250),0)]</visible>
                 <control type="image">
                     <width>64</width>
                     <height>64</height>
@@ -348,7 +340,7 @@
                     <align>center</align>
                     <textcolor>LineLabel</textcolor>
                     <font>Font-LineLabel</font>
-                    <label>$INFO[Window(home).Property(TMDBbHelper.ListItem.Top250)]</label>
+                    <label>$VAR[Label_Top250]</label>
                 </control>
             </control>
 
@@ -438,7 +430,7 @@
                 <width>64</width>
                 <height>64</height>
                 <aspectratio>keep</aspectratio>
-                <visible>!String.IsEmpty(ListItem.AudioCodec) | [String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListITem.FileExtension)]</visible>
+                <visible>!String.IsEmpty(ListItem.AudioCodec) | [String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.FileExtension)]</visible>
                 <texture colordiffuse="LineLabel" fallback="indicator/fallback.png">$VAR[Image_AudioCodec]</texture>
             </control>
 
@@ -752,6 +744,7 @@
         <value condition="Window.IsVisible(MyPVRTimers.xml)">$LOCALIZE[19040]</value>
         <value condition="Window.IsVisible(MyPVRSearch.xml)">$LOCALIZE[137]</value>
         <value condition="Window.IsVisible(MyPVRRecordings.xml)">$LOCALIZE[19017]</value>
+        <value condition="Window.IsVisible(MyPVRProviders.xml)">$LOCALIZE[19334]</value>
         <value condition="String.IsEqual(Container.FolderPath,videodb://tvshows/titles/)">$LOCALIZE[20343]</value>
         <value condition="String.IsEqual(Container.FolderPath,videodb://movies/titles/)">$LOCALIZE[20342]</value>
         <value condition="Container.Content(episodes) + !String.IsEmpty(ListItem.TvShowTitle) + String.Contains(Container.FolderPath,videodb://tvshows/titles/)">[CAPITALIZE]$INFO[ListItem.TvShowTitle][/CAPITALIZE]</value>
@@ -791,7 +784,7 @@
 
         <value condition="Window.IsVisible(1190)">$INFO[Window(Home).Property(1190_SubLabel)]</value>
 
-        <value condition="!String.IsEmpty(Container.NumItems) + !String.IsEmpty(Control.GetLabel(28)) + [Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml)]">[COLOR=$VAR[HighlightColor2]]$INFO[Container.NumItems][/COLOR] $LOCALIZE[31001]  •  [COLOR=$VAR[HighlightColor2]]$INFO[Container.CurrentPage][/COLOR] $LOCALIZE[20163] [COLOR=$VAR[HighlightColor2]]$INFO[Container.NumPages][/COLOR] $LOCALIZE[31067]  •  $INFO[Control.GetLabel(28)]</value>
+        <value condition="!String.IsEmpty(Container.NumItems) + !String.IsEmpty(Control.GetLabel(28)) + [Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRProviders.xml)]">[COLOR=$VAR[HighlightColor2]]$INFO[Container.NumItems][/COLOR] $LOCALIZE[31001]  •  [COLOR=$VAR[HighlightColor2]]$INFO[Container.CurrentPage][/COLOR] $LOCALIZE[20163] [COLOR=$VAR[HighlightColor2]]$INFO[Container.NumPages][/COLOR] $LOCALIZE[31067]  •  $INFO[Control.GetLabel(28)]</value>
 
         <value condition="!String.IsEmpty(Container.NumItems)">[COLOR=$VAR[HighlightColor2]]$INFO[Container.NumItems][/COLOR] $LOCALIZE[31001]  •  [COLOR=$VAR[HighlightColor2]]$INFO[Container.CurrentPage][/COLOR] $LOCALIZE[20163] [COLOR=$VAR[HighlightColor2]]$INFO[Container.NumPages][/COLOR] $LOCALIZE[31067]</value>
         <value condition="!String.IsEmpty(Skin.String(home.subheadertext))">$INFO[Skin.String(home.subheadertext)]</value>
@@ -821,7 +814,7 @@
         <value condition="Window.IsVisible(MyMusicNav.xml)">$LOCALIZE[2]</value>
         <value condition="Window.IsVisible(MyPics.xml)">$LOCALIZE[1]</value>
         <value condition="Window.IsVisible(MyPrograms.xml)">$LOCALIZE[0]</value>
-        <value condition="Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml)">$LOCALIZE[31015]</value>
+        <value condition="Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRProviders.xml)">$LOCALIZE[31015]</value>
 
         <value condition="!String.IsEmpty(Window(home).Property(Header.Label))">$INFO[Window(home).Property(Header.Label)]</value>
 
@@ -850,7 +843,7 @@
         <value condition="Window.IsVisible(MyMusicNav.xml)">special://skin/extras/icons/songs.png</value>
         <value condition="Window.IsVisible(MyPics.xml)">special://skin/extras/icons/pictures.png</value>
         <value condition="Window.IsVisible(MyPrograms.xml)">special://skin/extras/icons/addons.png</value>
-        <value condition="Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml)">special://skin/extras/icons/livetv.png</value>
+        <value condition="Window.IsVisible(MyPVRGuide.xml) | Window.IsVisible(MyPVRChannels.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRProviders.xml)">special://skin/extras/icons/livetv.png</value>
 
         <value condition="!String.IsEmpty(Window(home).Property(Header.Icon)) + String.Contains(Window(home).Property(Header.Icon),special://skin/extras/icons/)">$INFO[Window(home).Property(Header.Icon)]</value>
 
@@ -988,7 +981,7 @@
                 <width>1050</width>
                 <orientation>horizontal</orientation>
                 <itemgap>0</itemgap>
-                <visible>!String.IsEmpty(Player.Duration) + Player.HasVideo</visible>
+                <visible>[!String.IsEmpty(Player.Duration) | !String.IsEmpty(PVR.EpgEventDuration) | !String.IsEmpty(VideoPlayer.EndTime)] + Player.HasVideo</visible>
                 <control type="label">
                     <width max="400">auto</width>
                     <font>Font-Sublabel</font>
@@ -1011,7 +1004,7 @@
                     <align>left</align>
                     <aligny>top</aligny>
                     <textcolor>$VAR[Furniture_TopBar_SubLabel_Color]</textcolor>
-                    <label>$INFO[Player.FinishTime,$LOCALIZE[31071] ,]</label>
+                    <label>$VAR[Label_FinishTime]</label>
                 </control>
                 <control type="label">
                     <width>330</width>
@@ -1021,6 +1014,15 @@
                     <visible>!VideoPlayer.Content(livetv)</visible>
                     <textcolor>$VAR[Furniture_TopBar_SubLabel_Color]</textcolor>
                     <label>$INFO[Player.Time(hh:mm:ss),  •  ,]$INFO[Player.Duration(hh:mm:ss), / ,]</label>
+                </control>
+                <control type="label">
+                    <width>330</width>
+                    <font>Font-Sublabel</font>
+                    <align>right</align>
+                    <aligny>top</aligny>
+                    <visible>VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventDuration)</visible>
+                    <textcolor>$VAR[Furniture_TopBar_SubLabel_Color]</textcolor>
+                    <label>$INFO[PVR.EpgEventElapsedTime(hh:mm:ss),  •  ,]$INFO[PVR.EpgEventDuration(hh:mm:ss), / ,]</label>
                 </control>
             </control>
             <control type="grouplist">

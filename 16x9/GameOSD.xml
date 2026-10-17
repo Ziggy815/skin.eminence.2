@@ -4,12 +4,12 @@
     <controls>
         <control type="group" id="1">
             <control type="group">
-                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation)</visible>
+                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameVolume) + !Window.IsActive(GameAdvancedSettings) + !Window.IsActive(GamePorts) + !Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents)</visible>
                 <include>GlobalOverlay</include>
             </control>
             <control type="group" id="10">
                 <visible>System.GetBool(gamesgeneral.showosdhelp)</visible>
-                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation)</visible>
+                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameVolume) + !Window.IsActive(GameAdvancedSettings) + !Window.IsActive(GamePorts) + !Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents)</visible>
                 <top>sidepad</top>
                 <bottom>sidepad</bottom>
                 <left>610</left>
@@ -78,7 +78,7 @@
 
             <control type="group" id="20">
                 <visible>!System.GetBool(gamesgeneral.showosdhelp)</visible>
-                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation)</visible>
+                <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(GameVolume) + !Window.IsActive(GameAdvancedSettings) + !Window.IsActive(GamePorts) + !Window.IsActive(InGameSaves) + !Window.IsActive(GameAgents)</visible>
                 <control type="group">
                     <include condition="!Skin.HasSetting(HorizontalMenus)">Dialog_Center</include>
                     <include>Animation_FadeIn</include>
@@ -108,6 +108,11 @@
                                 <label2>Select + X</label2>
                                 <icon>osd/fullscreen/buttons/play.png</icon>
                                 <onclick>Play</onclick>
+                            </item>
+                            <item id="2104">
+                                <description>Saved games button</description>
+                                <label>$LOCALIZE[35259]</label>
+                                <onclick>ActivateWindow(InGameSaves)</onclick>
                             </item>
                             <item id="2102">
                                 <description>Reset button</description>
@@ -149,6 +154,11 @@
                                 <description>Controller settings button</description>
                                 <label>$LOCALIZE[35234]</label>
                                 <onclick>ActivateWindow(GameControllers)</onclick>
+                            </item>
+                            <item id="14107">
+                                <description>Port setup button</description>
+                                <label>$LOCALIZE[35253]</label>
+                                <onclick>ActivateWindow(GamePorts)</onclick>
                             </item>
                             <item id="14105">
                                 <description>Advanced settings</description>

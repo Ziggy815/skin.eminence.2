@@ -25,7 +25,7 @@
             <control type="list" id="9000">
                 <include condition="Skin.HasSetting(HorizontalMenus)">Dialog_Top_PowerMenu</include>
                 <include condition="!Skin.HasSetting(HorizontalMenus)">Dialog_Center_PowerMenu</include>
-                <content><include>skinshortcuts-group-powermenu</include></content>
+                <content><include>skinshortcuts-powermenu</include></content>
             </control>
 
         </control>

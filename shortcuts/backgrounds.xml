@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<backgrounds>
+    <background name="custom-image" label="$LOCALIZE[31187]" type="browse">
+        <icon>special://skin/extras/icons/pictures.png</icon>
+        <source label="Skin Backgrounds">special://skin/extras/backgrounds/</source>
+        <source label="$LOCALIZE[1024]">browse</source>
+    </background>
+
+    <background name="custom-folder" label="$LOCALIZE[1042]" type="multi">
+        <icon>special://skin/extras/icons/files.png</icon>
+        <source label="$LOCALIZE[1024]">browse</source>
+    </background>
+
+    <background name="playlistBackground" label="$LOCALIZE[136]" type="playlist">
+        <icon>special://skin/extras/icons/playlist.png</icon>
+        <source label="$LOCALIZE[20012]">special://profile/playlists/video/</source>
+        <source label="$LOCALIZE[31260]">special://skin/extras/playlists/</source>
+    </background>
+</backgrounds>

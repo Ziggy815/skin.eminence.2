@@ -102,6 +102,13 @@
             <width>100%</width>
             <include>Defs_OptionButton</include>
         </control>
+        <control type="colorbutton" id="15">
+            <align>left</align>
+            <colorposx>1185</colorposx>
+            <textoffsetx>30</textoffsetx>
+            <width>100%</width>
+            <include>Defs_OptionButton</include>
+        </control>
     </controls>
 
 </window>

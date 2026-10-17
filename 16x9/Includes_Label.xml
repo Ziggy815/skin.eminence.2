@@ -69,9 +69,14 @@
 
     <variable name="Label_GenreLine">
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
-        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDBbHelper.ListItem.Genre))">$INFO[Window(Home).Property(TMDBbHelper.ListItem.Genre)]</value>
+        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Genre))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Genre)]</value>
 
         <value>$LOCALIZE[19499]</value>
+    </variable>
+
+    <variable name="Label_Top250">
+        <value condition="!String.IsEmpty(ListItem.Top250)">$INFO[ListItem.Top250]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Top250)]</value>
     </variable>
 
     <variable name="Label_FullscreenButton">
@@ -99,27 +104,28 @@
     </variable>
 
     <variable name="Label_ShortcutsWidget">
+        <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">$INFO[Container(211).ListItem.Property(widgetLabel)]</value>
         <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetName))">$INFO[Container(211).ListItem.Property(widgetName)]</value>
         <value condition="!String.IsEmpty(Container(211).ListItem.Property(background))">$LOCALIZE[31188]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1101)">$INFO[Skin.String(Widget.1101.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1102)">$INFO[Skin.String(Widget.1102.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1103)">$INFO[Skin.String(Widget.1103.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1104)">$INFO[Skin.String(Widget.1104.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1105)">$INFO[Skin.String(Widget.1105.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1106)">$INFO[Skin.String(Widget.1106.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1107)">$INFO[Skin.String(Widget.1107.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1108)">$INFO[Skin.String(Widget.1108.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1109)">$INFO[Skin.String(Widget.1109.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1101)">$INFO[Skin.String(Widget.1101.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1102)">$INFO[Skin.String(Widget.1102.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1103)">$INFO[Skin.String(Widget.1103.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1104)">$INFO[Skin.String(Widget.1104.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1105)">$INFO[Skin.String(Widget.1105.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1106)">$INFO[Skin.String(Widget.1106.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1107)">$INFO[Skin.String(Widget.1107.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1108)">$INFO[Skin.String(Widget.1108.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1109)">$INFO[Skin.String(Widget.1109.Label),$LOCALIZE[31029] (,)]</value>
 
-        <value condition="String.IsEqual(Window.Property(groupname),x1111)">$INFO[Skin.String(Widget.1111.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1112)">$INFO[Skin.String(Widget.1112.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1113)">$INFO[Skin.String(Widget.1113.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1114)">$INFO[Skin.String(Widget.1114.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1115)">$INFO[Skin.String(Widget.1115.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1116)">$INFO[Skin.String(Widget.1116.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1117)">$INFO[Skin.String(Widget.1117.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1118)">$INFO[Skin.String(Widget.1118.Label),$LOCALIZE[31029] (,)]</value>
-        <value condition="String.IsEqual(Window.Property(groupname),x1119)">$INFO[Skin.String(Widget.1119.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1111)">$INFO[Skin.String(Widget.1111.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1112)">$INFO[Skin.String(Widget.1112.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1113)">$INFO[Skin.String(Widget.1113.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1114)">$INFO[Skin.String(Widget.1114.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1115)">$INFO[Skin.String(Widget.1115.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1116)">$INFO[Skin.String(Widget.1116.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1117)">$INFO[Skin.String(Widget.1117.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1118)">$INFO[Skin.String(Widget.1118.Label),$LOCALIZE[31029] (,)]</value>
+        <value condition="String.IsEqual(Window.Property(menuname),x1119)">$INFO[Skin.String(Widget.1119.Label),$LOCALIZE[31029] (,)]</value>
 
         <value>$LOCALIZE[31147]$INFO[Skin.String(home.fallbackwidget.name), (,)]</value>
     </variable>
@@ -145,7 +151,7 @@
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$VAR[Label_Plot]</value>
         <value condition="Container.Content(songs)">$INFO[ListItem.Artist,[B],[/B][CR]]$INFO[ListItem.Album]$INFO[ListItem.Year,  (,)]</value>
         <value condition="Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR][CR],]$VAR[Label_Plot]</value>
-        <value>$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[Window(Home).Property(TMDBbHelper.ListItem.RottenTomatoes_Consensus),,[CR][CR]]$VAR[Label_Plot]$INFO[Window(Home).Property(TMDBbHelper.ListItem.Awards),[CR][CR],]</value>
+        <value>$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Consensus),,[CR][CR]]$VAR[Label_Plot]$INFO[Window(Home).Property(TMDbHelper.ListItem.Awards),[CR][CR],]</value>
     </variable>
 
     <variable name="Label_OverlayTitle">
@@ -155,12 +161,13 @@
     </variable>
 
     <variable name="Label_Plot">
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDBbHelper.ListItem.Plots)]</value>
+        <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
+        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
         <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDBbHelper.ListItem.Plot))">$INFO[Window(Home).Property(TMDBbHelper.ListItem.Plot)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Plot))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
     </variable>
 
     <variable name="Label_ListPlot">
@@ -235,11 +242,18 @@
         <value>0.0</value>
     </variable>
 
+    <variable name="Label_FinishTime">
+        <value condition="VideoPlayer.Content(livetv) + !String.IsEmpty(VideoPlayer.EndTime)">$INFO[VideoPlayer.EndTime,$LOCALIZE[31071] ,]</value>
+        <value condition="VideoPlayer.Content(livetv) + !String.IsEmpty(PVR.EpgEventFinishTime)">$INFO[PVR.EpgEventFinishTime,$LOCALIZE[31071] ,]</value>
+        <value>$INFO[Player.FinishTime,$LOCALIZE[31071] ,]</value>
+    </variable>
+
     <variable name="Label_RSS">
         <value condition="Player.HasAudio">[COLOR=$VAR[HighlightColor2]]$INFO[MusicPlayer.Artist][/COLOR]  $INFO[MusicPlayer.Title]  •  $INFO[Player.Time] / $INFO[Player.Duration]</value>
         <value condition="Player.HasVideo + !VideoPlayer.Content(LiveTV) + String.IsEmpty(VideoPlayer.TvShowTitle)">[COLOR=$VAR[HighlightColor2]]$INFO[VideoPlayer.Director][/COLOR]  $INFO[VideoPlayer.Title]  •  $INFO[Player.Time] / $INFO[Player.Duration]</value>
         <value condition="Player.HasVideo + !VideoPlayer.Content(LiveTV) + !String.IsEmpty(VideoPlayer.TvShowTitle)">[COLOR=$VAR[HighlightColor2]]$INFO[VideoPlayer.TvShowTitle][/COLOR]  $INFO[VideoPlayer.Title]  •  $INFO[Player.Time] / $INFO[Player.Duration]</value>
-        <value condition="Player.HasVideo + VideoPlayer.Content(LiveTV)">[COLOR=$VAR[HighlightColor2]]$INFO[VideoPlayer.ChannelName][/COLOR]  $INFO[VideoPlayer.Title]  •  $INFO[Player.Time] / $INFO[Player.Duration]</value>
+        <value condition="Player.HasVideo + VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.EpgEventDuration)">[COLOR=$VAR[HighlightColor2]]$INFO[VideoPlayer.ChannelName][/COLOR]  $INFO[VideoPlayer.Title]  •  $INFO[PVR.EpgEventElapsedTime] / $INFO[PVR.EpgEventDuration]</value>
+        <value condition="Player.HasVideo + VideoPlayer.Content(LiveTV)">[COLOR=$VAR[HighlightColor2]]$INFO[VideoPlayer.ChannelName][/COLOR]  $INFO[VideoPlayer.Title]  •  $INFO[VideoPlayer.StartTime] - $INFO[VideoPlayer.EndTime]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(NextAired.NextDate))">[COLOR=$VAR[HighlightColor2]]$LOCALIZE[31190]... [/COLOR]$INFO[Window(Home).Property(NextAired.NextTitle),, • ]$INFO[Window(Home).Property(NextAired.AirTime),, • ]$INFO[Window(Home).Property(NextAired.NextDate)]</value>
         <value condition="String.IsEmpty(Window(Home).Property(NextAired.NextDate)) + !String.IsEmpty(Window(Home).Property(NextAired.LatestTitle))">[COLOR=$VAR[HighlightColor2]]$LOCALIZE[31191]... [/COLOR]$INFO[Window(Home).Property(NextAired.LatestTitle),, • ]$INFO[Window(Home).Property(NextAired.LatestDate),, • ]$INFO[Window(Home).Property(NextAired.Status)]</value>
     </variable>
@@ -267,19 +281,22 @@
     <variable name="Label_HomeWidget">
         <value condition="Integer.IsEqual(Window(Home).Property(MenuFocus),9002) + String.IsEqual(Container(9002).ListItem.Property(widget),Weather) + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Location]</value>
         <value condition="Integer.IsEqual(Window(Home).Property(MenuFocus),9002) + String.IsEqual(Container(9002).ListItem.Property(widget),SimilarMovies)">$INFO[Container(9001).ListItem.Property(originaltitle),$LOCALIZE[31125] ,]</value>
+        <value condition="Integer.IsEqual(Window(Home).Property(MenuFocus),9002) + !String.IsEmpty(Container(9002).ListItem.Property(widgetLabel))">$INFO[Container(9002).ListItem.Property(widgetLabel)]</value>
         <value condition="Integer.IsEqual(Window(Home).Property(MenuFocus),9002) + !String.IsEmpty(Container(9002).ListItem.Property(widgetName))">$INFO[Container(9002).ListItem.Property(widgetName)]</value>
         <value condition="String.IsEqual(Container(9000).ListItem.Property(widget),Weather) + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Location]</value>
         <value condition="String.IsEqual(Container(9000).ListItem.Property(widget),SimilarMovies)">$INFO[Container(9001).ListItem.Property(originaltitle),$LOCALIZE[31125] ,]</value>
+        <value condition="!String.IsEmpty(Container(9000).ListItem.Property(widgetLabel))">$INFO[Container(9000).ListItem.Property(widgetLabel)]</value>
         <value condition="!String.IsEmpty(Container(9000).ListItem.Property(widgetName))">$INFO[Container(9000).ListItem.Property(widgetName)]</value>
         <value condition="!String.IsEmpty(Skin.String(home.fallbackwidget)) + String.IsEqual(Skin.String(home.fallbackwidget.name),$LOCALIZE[31124])">$INFO[Container(9001).ListItem.Property(originaltitle),$LOCALIZE[31125] ,]</value>
+        <value condition="[String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Location]</value>
         <value condition="!String.IsEmpty(Skin.String(home.fallbackwidget)) + !String.IsEmpty(Skin.String(home.fallbackwidget.name))">$INFO[Skin.String(home.fallbackwidget.name)]</value>
-        <value condition="[String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Location]</value>
         <value>$LOCALIZE[31095]</value>
     </variable>
 
     <variable name="Label_Hub_WidgetType">
         <value condition="!Integer.IsGreater(Container(9500).NumItems,0)">$LOCALIZE[31212]</value>
         <value condition="Skin.HasSetting(furniture.hidehubplot)">$VAR[Label_Hub_WidgetLabel]$VAR[Label_Hub_WidgetLabel2,  •  ,]</value>
+        <value condition="!String.IsEmpty(Container(9501).ListItem.Property(widgetLabel))">$INFO[Container(9501).ListItem.Property(widgetLabel)]</value>
         <value condition="!String.IsEmpty(Container(9501).ListItem.Property(widgetName))">$INFO[Container(9501).ListItem.Property(widgetName)]</value>
         <value condition="Window.IsVisible(1101) + !String.IsEmpty(Skin.String(Widget.1101.Label))">$INFO[Skin.String(Widget.1101.Label)]</value>
         <value condition="Window.IsVisible(1102) + !String.IsEmpty(Skin.String(Widget.1102.Label))">$INFO[Skin.String(Widget.1102.Label)]</value>
@@ -294,17 +311,18 @@
     </variable>
 
     <variable name="Label_HomeWidget_Label">
-        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Temperature,,  ]$INFO[Weather.Conditions]</value>
+        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Weather.Temperature,,  ]$INFO[Weather.Conditions]</value>
         <value condition="!String.IsEmpty(Container(9001).ListItem.Title)">$INFO[Container(9001).ListItem.Title]</value>
         <value>$INFO[Container(9001).ListItem.Label]</value>
     </variable>
     <variable name="Label_HomeWidget_Plot">
-        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(weather).Property(Current.FeelsLike),$LOCALIZE[402] ,]$INFO[System.TemperatureUnits]$INFO[Window(weather).Property(Current.WindSpeed),[CR], ]$INFO[Window(weather).Property(Current.WindDirection),, [LOWERCASE]$LOCALIZE[404][/LOWERCASE]]$INFO[Window(weather).Property(Current.Humidity),[CR], [LOWERCASE]$LOCALIZE[406][/LOWERCASE]]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDBbHelper.ListItem.Plot))">$INFO[Window(Home).Property(TMDBbHelper.ListItem.Plot)]</value>
-        <value>$INFO[Container(9001).ListItem.Plot]$INFO[Container(9001).ListItem.Property(Album_Description)]$INFO[Container(9001).ListItem.AddonDescription]</value>
+        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(weather).Property(Current.FeelsLike),$LOCALIZE[402] ,]$INFO[System.TemperatureUnits]$INFO[Window(weather).Property(Current.WindSpeed),[CR], ]$INFO[Window(weather).Property(Current.WindDirection),, [LOWERCASE]$LOCALIZE[404][/LOWERCASE]]$INFO[Window(weather).Property(Current.Humidity),[CR], [LOWERCASE]$LOCALIZE[406][/LOWERCASE]]</value>
+        <value condition="!String.IsEmpty(Container(9001).ListItem.Plot)">$INFO[Container(9001).ListItem.Plot]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Plot))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Plot)]</value>
+        <value>$INFO[Container(9001).ListItem.Property(Album_Description)]$INFO[Container(9001).ListItem.AddonDescription]</value>
     </variable>
     <variable name="Label_HomeWidget_Info">
-        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(weather).Property(WeatherProvider)]</value>
+        <value condition="[String.IsEqual(Container(9000).ListItem.Property(widget),Weather) | [String.IsEmpty(Container(9000).ListItem.Property(widget)) + [String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(weather).Property(WeatherProvider)]</value>
         <value condition="!String.IsEmpty(Container(9001).ListItem.Year)">$INFO[Container(9001).ListItem.Artist,,  •  ]$INFO[Container(9001).ListItem.TvShowTitle,,  •  ]$INFO[Container(9001).ListItem.Year]$INFO[Container(9001).ListItem.RatingAndVotes,  •  ,]</value>
         <value condition="!String.IsEmpty(Container(9001).ListItem.ChannelName)">$INFO[Container(9001).ListItem.ChannelName]$INFO[Container(9001).ListItem.StartTime,  •  ,]$INFO[Container(9001).ListItem.EndTime, - ,]</value>
         <value>$INFO[Container(9001).ListItem.Artist,,  •  ]$INFO[Container(9001).ListItem.TvShowTitle]$INFO[Container(9001).ListItem.RatingAndVotes,  •  ,]</value>
@@ -336,6 +354,7 @@
         <value condition="Window.IsActive(interfacesettings)">$LOCALIZE[14206]</value>
         <value condition="Window.IsActive(mediasettings)">$LOCALIZE[14202]</value>
         <value condition="Window.IsActive(playersettings)">$LOCALIZE[14200]</value>
+        <value condition="Window.IsActive(gamesettings)">$LOCALIZE[15016]</value>
         <value>$LOCALIZE[5]</value>
     </variable>
 

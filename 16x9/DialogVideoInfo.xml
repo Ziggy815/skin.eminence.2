@@ -176,7 +176,7 @@
                                 <font>Font-ListInfo-Small-Bold</font>
                                 <textcolor>$VAR[HighlightColor2]</textcolor>
                                 <label>$VAR[Label_GenreLine,[UPPERCASE],[/UPPERCASE]]</label>
-                                <visible>!String.IsEqual(ListItem.Property(item.type),person) | String.IsEmpty(ListItem.Property(Aliases))</visible>
+                                <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)] | String.IsEmpty(ListItem.Property(Aliases))</visible>
                             </control>
                             <control type="label">
                                 <top>1</top>
@@ -186,7 +186,7 @@
                                 <font>FontArial-ListInfo-Small-Bold</font>
                                 <textcolor>$VAR[HighlightColor2]</textcolor>
                                 <label>$INFO[ListItem.Property(Aliases),[UPPERCASE],[/UPPERCASE]]</label>
-                                <visible>String.IsEqual(ListItem.Property(item.type),person) + !String.IsEmpty(ListItem.Property(Aliases))</visible>
+                                <visible>[String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)] + !String.IsEmpty(ListItem.Property(Aliases))</visible>
                             </control>
                         </control>
                         <control type="grouplist">
@@ -202,7 +202,7 @@
                                 <width>32</width>
                                 <height>32</height>
                                 <texture>indicator/metacritic.png</texture>
-                                <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.Metacritic_Rating))</visible>
+                                <visible>!String.IsEmpty(ListItem.Rating(metacritic)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating))</visible>
                             </control>
                             <control type="label">
                                 <top>2</top>
@@ -210,22 +210,31 @@
                                 <height>28</height>
                                 <align>right</align>
                                 <font>Font-ListInfo-Small-Bold</font>
-                                <label>$INFO[Window(Home).Property(TMDBHelper.ListItem.Metacritic_Rating), ,%   ]</label>
-                                <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.Metacritic_Rating))</visible>
+                                <label>$INFO[ListItem.Rating(metacritic), ,   ]</label>
+                                <visible>!String.IsEmpty(ListItem.Rating(metacritic))</visible>
+                            </control>
+                            <control type="label">
+                                <top>2</top>
+                                <width>auto</width>
+                                <height>28</height>
+                                <align>right</align>
+                                <font>Font-ListInfo-Small-Bold</font>
+                                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating), ,%   ]</label>
+                                <visible>String.IsEmpty(ListItem.Rating(metacritic)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating))</visible>
                             </control>
                             <control type="image">
                                 <width>32</width>
                                 <height>32</height>
                                 <texture>indicator/rtrotten.png</texture>
-                                <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating))</visible>
-                                <visible>!Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating),59)</visible>
+                                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))</visible>
+                                <visible>!Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59)</visible>
                             </control>
                             <control type="image">
                                 <width>32</width>
                                 <height>32</height>
                                 <texture>indicator/rtfresh.png</texture>
-                                <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating))</visible>
-                                <visible>Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating),59)</visible>
+                                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))</visible>
+                                <visible>Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59)</visible>
                             </control>
                             <control type="label">
                                 <top>2</top>
@@ -233,15 +242,15 @@
                                 <height>28</height>
                                 <align>right</align>
                                 <font>Font-ListInfo-Small-Bold</font>
-                                <label>$INFO[Window(Home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating), ,%   ]</label>
-                                <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.RottenTomatoes_Rating))</visible>
+                                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating), ,%   ]</label>
+                                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))</visible>
                             </control>
                             <control type="image">
                                 <top>2</top>
                                 <width>40</width>
                                 <height>32</height>
                                 <texture>indicator/imdbicon.png</texture>
-                                <visible>!String.IsEmpty(ListItem.RatingAndVotes) | !String.IsEmpty(Window(home).Property(TMDBHelper.ListITem.IMDb_Rating))</visible>
+                                <visible>!String.IsEmpty(ListItem.RatingAndVotes) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
                             </control>
                             <control type="label">
                                 <top>2</top>
@@ -249,8 +258,8 @@
                                 <height>28</height>
                                 <align>right</align>
                                 <font>Font-ListInfo-Small-Bold</font>
-                                <label>$INFO[Window(home).Property(TMDBHelper.ListITem.IMDb_Rating), ,]$INFO[Window(home).Property(TMDBHelper.ListItem.IMDb_Votes), (, $LOCALIZE[205])]</label>
-                                <visible>!String.IsEmpty(Window(home).Property(TMDBHelper.ListITem.IMDb_Rating))</visible>
+                                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating), ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Votes), (, $LOCALIZE[205])]</label>
+                                <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating))</visible>
                             </control>
                             <control type="label">
                                 <top>2</top>
@@ -259,7 +268,7 @@
                                 <align>right</align>
                                 <font>Font-ListInfo-Small-Bold</font>
                                 <label>$INFO[ListItem.RatingAndVotes, ,]</label>
-                                <visible>String.IsEmpty(Window(home).Property(TMDBHelper.ListITem.IMDb_Rating)) + !String.IsEmpty(ListItem.RatingAndVotes)</visible>
+                                <visible>String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.IsEmpty(ListItem.RatingAndVotes)</visible>
                             </control>
                         </control>
                         
@@ -270,7 +279,7 @@
                             <height max="228">auto</height>
                             <font>Font-ListInfo</font>
                             <align>left</align>
-                            <label>$INFO[Window(Home).Property(TMDBHelper.ListItem.RottenTomatoes_Consensus),, ]$VAR[Label_Plot]$INFO[Window(Home).Property(TMDBHelper.ListItem.Awards), ,]</label>
+                            <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Consensus),, ]$VAR[Label_Plot]$INFO[Window(Home).Property(TMDbHelper.ListItem.Awards), ,]</label>
                         </control>
                         <control type="group">
                             <left>pad</left>
@@ -545,7 +554,7 @@
                         <control type="group">
                             <width>330</width>
                             <height>100%</height>
-                            <visible>!String.IsEmpty(Window(Home).Property(TMDBHelper.ListITem.Revenue))</visible>
+                            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue))</visible>
                             <visible>!String.IsEmpty(ListItem.Art(poster)) | !String.IsEmpty(ListItem.Art(tvshow.poster))</visible>
                             <control type="label">
                                 <top>0</top>
@@ -560,7 +569,7 @@
                                 <align>center</align>
                                 <textcolor>SubLabel</textcolor>
                                 <font>Font-InfoBox-Title</font>
-                                <label>$INFO[Window(Home).Property(TMDBHelper.ListITem.Revenue)]</label>
+                                <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Revenue)]</label>
                             </control>
                         </control>
 
@@ -586,7 +595,7 @@
                             <usealttexture>Container.Content(TVShows)</usealttexture>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
 
 
@@ -596,7 +605,7 @@
                             <visible>!String.IsEmpty(ListItem.Trailer)</visible>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
                         
                         
@@ -608,7 +617,7 @@
                             <include>Defs_OptionButton3</include>
                             <onclick>Action(close)</onclick>
                             <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
                         
 
@@ -619,7 +628,7 @@
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
                             <enable>Integer.IsGreater(Container(50).NumItems,0)</enable>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
                         
 
@@ -630,8 +639,8 @@
                             <onclick>SetFocus(9500)</onclick>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>!String.IsEmpty(ListItem.Director)</visible>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>System.HasAddon(plugin.video.themoviedb.helper) + !String.IsEmpty(ListItem.Director)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
                         
 
@@ -640,7 +649,7 @@
                             <label>13511</label>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
                         </control>
                         
 
@@ -649,7 +658,42 @@
                             <label>184</label>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>!String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
+                        </control>
+
+                        <!-- Video Versions Button -->
+                        <control type="button" id="14">
+                            <label>40014</label>
+                            <include>Defs_OptionButton3</include>
+                            <onfocus>ClearProperty(list)</onfocus>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
+                        </control>
+
+                        <!-- Video Extras Button -->
+                        <control type="button" id="15">
+                            <label>40025</label>
+                            <include>Defs_OptionButton3</include>
+                            <onfocus>ClearProperty(list)</onfocus>
+                            <visible>![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
+                        </control>
+
+                        <!-- User Rating Button -->
+                        <control type="button" id="7">
+                            <label>38018</label>
+                            <include>Defs_OptionButton3</include>
+                            <onfocus>ClearProperty(list)</onfocus>
+                            <visible>Control.IsEnabled(7) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
+                        </control>
+
+                        <!-- TMDb Helper Related Lists Button -->
+                        <control type="button" id="9006">
+                            <label>TMDb Helper</label>
+                            <include>Defs_OptionButton3</include>
+                            <onfocus>ClearProperty(list)</onfocus>
+                            <visible>System.HasAddon(plugin.video.themoviedb.helper) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)]</visible>
+                            <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=movie,tmdb_id=$INFO[ListItem.UniqueID(tmdb)],imdb_id=$INFO[ListItem.IMDBNumber],query=$INFO[ListItem.Title],year=$INFO[ListItem.Year])</onclick>
+                            <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=tv,tmdb_id=$INFO[ListItem.UniqueID(tmdb)],tvdb_id=$INFO[ListItem.UniqueID(tvdb)],query=$INFO[ListItem.Title],year=$INFO[ListItem.Year])</onclick>
+                            <onclick condition="String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=tv,tmdb_id=$INFO[ListItem.UniqueID(tvshow.tmdb)],query=$INFO[ListItem.TvShowTitle],season=$INFO[ListItem.Season],episode=$INFO[ListItem.Episode])</onclick>
                         </control>
 
 
@@ -660,7 +704,7 @@
                             <onclick>SetFocus(9500)</onclick>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         </control>
                         <!-- InMovies Button -->
                         <control type="button" id="9003">
@@ -669,7 +713,7 @@
                             <onclick>SetFocus(9500)</onclick>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         </control>
 
                         <!-- InTvShows Button -->
@@ -679,7 +723,7 @@
                             <onclick>SetFocus(9500)</onclick>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         </control>
                         <!-- InTvShows Button -->
                         <control type="button" id="9005">
@@ -688,7 +732,7 @@
                             <onclick>SetFocus(9500)</onclick>
                             <include>Defs_OptionButton3</include>
                             <onfocus>ClearProperty(list)</onfocus>
-                            <visible>String.IsEqual(ListItem.Property(item.type),person)</visible>
+                            <visible>String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(item.tmdb_type),person) | String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
                         </control>
                         
 
@@ -763,7 +807,7 @@
                                 <param name="contentvisible" value="true" />
                                 <param name="content" value="$VAR[Defs_TMDBH_List_Content]" />
                                 <onclick>SetProperty(extinfo,2,home)</onclick>
-                                <onclick>RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(9500).ListItem.FolderPath],type=movie,call_auto=1190)</onclick>
+                                <onclick>RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(9500).ListItem.FolderPath],call_auto=1190)</onclick>
                             </include>
                         </control>
                     </control>
@@ -785,9 +829,9 @@
             <onleft>SendClick(5)</onleft>
             <onright>9000</onright>
             <onright>SendClick(5)</onright>
-            <onclick>SetProperty(extinfo,2,home)</onclick>
-            <onclick>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],type=person,call_auto=1190)</onclick>
-            <!-- TODO: ADD TMDBHELPER EXT INFO -->
+            <onclick condition="System.HasAddon(plugin.video.themoviedb.helper)">SetProperty(extinfo,2,home)</onclick>
+            <onclick condition="System.HasAddon(plugin.video.themoviedb.helper)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],tmdb_type=person,call_auto=1190)</onclick>
+            <onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">SendClick(2003,50)</onclick>
         </control>
 
         <!-- INFO OVERLAY -->

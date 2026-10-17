@@ -379,6 +379,12 @@
                         <onup condition="String.IsEqual(Control.GetLabel(5),$LOCALIZE[207])">51</onup>
                         <onup condition="!String.IsEqual(Control.GetLabel(5),$LOCALIZE[207])">9601</onup>
 
+                        <!-- Play Button -->
+                        <control type="button" id="8">
+                            <include>Defs_OptionButton3</include>
+                            <label>208</label>
+                        </control>
+
                         <!-- Youtube Button -->
                         <control type="button" id="9001">
                             <include>Defs_OptionButton3</include>

@@ -179,6 +179,12 @@
             <height>72</height>
             <include>Defs_OptionButton</include>
         </control>
+        <control type="colorbutton" id="15">
+            <width>100%</width>
+            <height>72</height>
+            <colorposx>settingsradioposx</colorposx>
+            <include>Defs_OptionButton</include>
+        </control>
 
     </controls>
 

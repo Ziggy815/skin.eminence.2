@@ -5,8 +5,8 @@
     <onunload condition="!String.IsEmpty(Window(Home).Property(home.fallbackwidget.name)) + !String.IsEqual(Skin.String(home.fallbackwidget.name),Window(Home).Property(home.fallbackwidget.name))">ClearProperty(home.fallbackwidget.name,home)</onunload>
     <controls>
         <include>GlobalOverlay</include>
-        <include  condition="![Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation)]">Dialog_Select</include>
-        <include  condition="Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation)">Dialog_Select_Game</include>
+        <include  condition="![Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)]">Dialog_Select</include>
+        <include  condition="Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)">Dialog_Select_Game</include>
 
 
 

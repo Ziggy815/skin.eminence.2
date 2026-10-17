@@ -106,7 +106,7 @@
 
     <include name="Dialog_Select_Game">
         <control type="group">
-            <visible>Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation)</visible>
+            <visible>Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)</visible>
             <bottom>0</bottom>
             <height>520</height>
             <include>Animation_SlideIn</include>
@@ -115,7 +115,7 @@
                 <height>620</height>
             </control>
             <control type="group">
-                <control type="textbox" id="12">
+                <control type="textbox" id="10812">
                     <centerleft>50%</centerleft>
                     <top>40</top>
                     <width>1080</width>
@@ -123,7 +123,7 @@
                     <align>center</align>
                     <aligny>center</aligny>
                 </control>
-                <control type="fixedlist" id="11">
+                <control type="fixedlist" id="10811">
                     <orientation>horizontal</orientation>
                     <focusposition>1</focusposition>
                     <movement>1</movement>
@@ -146,9 +146,10 @@
                                 <videofilter>$INFO[ListItem.Property(game.videofilter)]</videofilter>
                                 <stretchmode>$INFO[ListItem.Property(game.stretchmode)]</stretchmode>
                                 <rotation>$INFO[ListItem.Property(game.videorotation)]</rotation>
+                                <pixels>$INFO[ListItem.FilenameAndPath]</pixels>
                             </control>
                             <control type="label">
-                                <textcolor>ffddddddd</textcolor>
+                                <textcolor>ffdddddd</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                                 <top>300</top>
                                 <height>30</height>
@@ -156,7 +157,7 @@
                                 <right>20</right>
                             </control>
                             <control type="label">
-                                <textcolor>ffddddddd</textcolor>
+                                <textcolor>ffdddddd</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                                 <top>300</top>
                                 <height>30</height>
@@ -180,13 +181,14 @@
                                 <videofilter>$INFO[ListItem.Property(game.videofilter)]</videofilter>
                                 <stretchmode>$INFO[ListItem.Property(game.stretchmode)]</stretchmode>
                                 <rotation>$INFO[ListItem.Property(game.videorotation)]</rotation>
+                                <pixels>$INFO[ListItem.FilenameAndPath]</pixels>
                             </control>
                             <control type="image">
                                 <left>10</left>
                                 <right>10</right>
                                 <top>10</top>
                                 <height>280</height>
-                                <visible>Control.HasFocus(11)</visible>
+                                <visible>Control.HasFocus(10811)</visible>
                                 <texture colordiffuse="$VAR[HighlightColor]" border="10">common/border.png</texture>
                             </control>
                             <control type="label">

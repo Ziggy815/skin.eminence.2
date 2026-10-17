@@ -53,7 +53,7 @@
                                 </control>
                                 <control type="group">
                                     <left>420</left>
-                                    <visible>!String.IsEmpty(Container(53).ListItemNoWrap(-4).FolderPath) | !Skin.HasSetting(HorizontalListNav)</visible>
+                                    <visible>!String.IsEmpty(Container(535).ListItemNoWrap(-4).FolderPath) | !Skin.HasSetting(HorizontalListNav)</visible>
                                     <animation effect="rotatey" center="270" start="-55" end="-55" time="0" condition="true">Conditional</animation>
                                     <include>MovieShowCaseItem-4</include>
                                 </control>

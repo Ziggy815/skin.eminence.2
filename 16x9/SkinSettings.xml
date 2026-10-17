@@ -7,7 +7,7 @@
     <onload condition="String.IsEmpty(Skin.String(home.headertext))">Skin.SetString(home.headertext,$LOCALIZE[10000])</onload>
     <onload condition="String.IsEmpty(Skin.String(home.widgetposters))">Skin.SetString(home.widgetposters,$LOCALIZE[31153])</onload>
     <onload condition="Skin.HasSetting(EnableColorFilter) + String.IsEmpty(Skin.String(global.background))">Skin.SetString(global.background,special://skin/extras/backgrounds/overlays/pattern0.jpg)</onload>
-    <onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|x1101|x1102|x1103|x1104|x1105|x1106|x1107|x1108|x1109|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu)</onunload>
+    <onload condition="String.IsEmpty(Skin.String(home.autoplaytrailers.delay))">Skin.SetString(home.autoplaytrailers.delay,05)</onload>
     <include condition="!Skin.HasSetting(store_init)">Defs_Store_Init</include>
     
     <controls>
@@ -169,7 +169,7 @@
                         <control type="button" id="8102">
                             <width>100%</width>
                             <label>31049</label>
-                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+                            <onclick>RunScript(script.skinshortcuts,type=manage,menu=mainmenu)</onclick>
                             <height>72</height>
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8001)</visible>
@@ -180,8 +180,9 @@
                             <label>31147</label>
                             <label2>$VAR[Label_SkinSetting_FallbackWidget]</label2>
                             <onclick condition="!String.IsEmpty(Skin.String(widget.background.fallback))">Skin.Reset(widget.background.fallback)</onclick>
+                            <onclick condition="!String.IsEmpty(Skin.String(home.fallbackwidget.node))">Skin.Reset(home.fallbackwidget.node)</onclick>
                             <onclick>SetProperty(home.fallbackwidget.name,$INFO[Skin.String(home.fallbackwidget.name)],home)</onclick>
-                            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=home.fallbackwidget&amp;skinWidget=home.fallbackwidget.node&amp;skinWidgetName=home.fallbackwidget.name&amp;skinWidgetType=home.fallbackwidget.type&amp;skinWidgetTarget=home.fallbackwidget.target)</onclick>
+                            <onclick>RunScript(script.skinshortcuts,type=skinstring,skinPath=home.fallbackwidget,skinLabel=home.fallbackwidget.name,skinType=home.fallbackwidget.type,skinTarget=home.fallbackwidget.target)</onclick>
                             <height>72</height>
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8001)</visible>
@@ -248,6 +249,39 @@
                             <height>72</height>
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8001)</visible>
+                        </control>
+
+                        <!-- Auto-play Trailers -->
+                        <control type="radiobutton" id="8180">
+                            <width>100%</width>
+                            <label>Auto-play Trailers</label>
+                            <radioposx>settingsradioposx</radioposx>
+                            <selected>Skin.HasSetting(home.autoplaytrailers)</selected>
+                            <onclick>Skin.ToggleSetting(home.autoplaytrailers)</onclick>
+                            <height>72</height>
+                            <include>Defs_OptionButton</include>
+                            <visible>ControlGroup(8000).HasFocus(8001)</visible>
+                        </control>
+                         <!-- Auto-play Delay -->
+                        <control type="button" id="8181">
+                            <width>100%</width>
+                            <label>   - Delay</label>
+                            <label2>$INFO[Skin.String(home.autoplaytrailers.delay)]s</label2>
+                            <radioposx>settingsradioposx</radioposx>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),10)">Skin.SetString(home.autoplaytrailers.delay,00)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),09)">Skin.SetString(home.autoplaytrailers.delay,10)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),08)">Skin.SetString(home.autoplaytrailers.delay,09)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),07)">Skin.SetString(home.autoplaytrailers.delay,08)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),06)">Skin.SetString(home.autoplaytrailers.delay,07)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),05)">Skin.SetString(home.autoplaytrailers.delay,06)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),04)">Skin.SetString(home.autoplaytrailers.delay,05)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),03)">Skin.SetString(home.autoplaytrailers.delay,04)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),02)">Skin.SetString(home.autoplaytrailers.delay,03)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),01)">Skin.SetString(home.autoplaytrailers.delay,02)</onclick>
+                            <onclick condition="String.IsEqual(Skin.String(home.autoplaytrailers.delay),00)">Skin.SetString(home.autoplaytrailers.delay,01)</onclick>
+                            <height>72</height>
+                            <include>Defs_OptionButton</include>
+                            <visible>ControlGroup(8000).HasFocus(8001) + Skin.HasSetting(home.autoplaytrailers)</visible>
                         </control>
 
                         <!-- Div SHOWCASE-->
@@ -585,7 +619,7 @@
                             <onclick>SetProperty(Dialog.7.BuiltIn,Skin.SetString(OSD_Timeout,$LOCALIZE[31276]))</onclick>
                             <onclick>SetProperty(Dialog.8.Label,$LOCALIZE[31277])</onclick>
                             <onclick>SetProperty(Dialog.8.BuiltIn,Skin.SetString(OSD_Timeout,$LOCALIZE[31277]))</onclick>
-                            <onclick>RunScript(script.toolbox,info=selectdialog,header=$LOCALIZE[31278])</onclick>>
+                            <onclick>RunScript(script.toolbox,info=selectdialog,header=$LOCALIZE[31278])</onclick>
                             <selected>!String.IsEmpty(Skin.String(OSD_Timeout))</selected>
                         </control>
 
@@ -1058,6 +1092,16 @@
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8006)</visible>
                         </control>
+                        <control type="radiobutton" id="86021">
+                            <width>100%</width>
+                            <label>TMDb Helper - Service Monitor</label>
+                            <onclick>Skin.ToggleSetting(TMDbHelper.Service)</onclick>
+                            <selected>Skin.HasSetting(TMDbHelper.Service)</selected>
+                            <radioposx>settingsradioposx</radioposx>
+                            <height>72</height>
+                            <include>Defs_OptionButton</include>
+                            <visible>ControlGroup(8000).HasFocus(8006) + System.HasAddon(plugin.video.themoviedb.helper)</visible>
+                        </control>
                         <control type="radiobutton" id="8603">
                             <width>100%</width>
                             <label>script.skinshortcuts</label>
@@ -1082,7 +1126,7 @@
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8006)</visible>
                         </control>
-                        <!-- <control type="radiobutton" id="8605">
+                        <control type="radiobutton" id="8605">
                             <width>100%</width>
                             <label>plugin.program.autocompletion</label>
                             <label2>$INFO[System.AddonVersion(plugin.program.autocompletion)]        </label2>
@@ -1093,7 +1137,7 @@
                             <height>72</height>
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8006)</visible>
-                        </control> -->
+                        </control>
                         <control type="radiobutton" id="8606">
                             <width>100%</width>
                             <label>script.artistslideshow</label>
@@ -1247,7 +1291,7 @@
                         <control type="button" id="8907">
                             <width>100%</width>
                             <label>31183</label>
-                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=powermenu)</onclick>
+                            <onclick>RunScript(script.skinshortcuts,type=manage,menu=powermenu)</onclick>
                             <height>72</height>
                             <include>Defs_OptionButton</include>
                             <visible>ControlGroup(8000).HasFocus(8009)</visible>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+    <property name="widget" type="widget" />
+    <property name="background" type="background" />
+    <property name="PosterWidget" type="toggle" value="true" />
+
+    <property name="tilecolor" type="options">
+        <options>
+            <option value="ff283ba8" label="ff283ba8">
+                <icon>special://skin/extras/colors/ff283ba8.png</icon>
+            </option>
+            <option value="ff287ba8" label="ff287ba8">
+                <icon>special://skin/extras/colors/ff287ba8.png</icon>
+            </option>
+            <option value="ff28a855" label="ff28a855">
+                <icon>special://skin/extras/colors/ff28a855.png</icon>
+            </option>
+            <option value="ff28a895" label="ff28a895">
+                <icon>special://skin/extras/colors/ff28a895.png</icon>
+            </option>
+            <option value="ff3ba828" label="ff3ba828">
+                <icon>special://skin/extras/colors/ff3ba828.png</icon>
+            </option>
+            <option value="ff5528a8" label="ff5528a8">
+                <icon>special://skin/extras/colors/ff5528a8.png</icon>
+            </option>
+            <option value="ff7ba828" label="ff7ba828">
+                <icon>special://skin/extras/colors/ff7ba828.png</icon>
+            </option>
+            <option value="ff9528a8" label="ff9528a8">
+                <icon>special://skin/extras/colors/ff9528a8.png</icon>
+            </option>
+            <option value="ffa8283b" label="ffa8283b">
+                <icon>special://skin/extras/colors/ffa8283b.png</icon>
+            </option>
+            <option value="ffa8287b" label="ffa8287b">
+                <icon>special://skin/extras/colors/ffa8287b.png</icon>
+            </option>
+            <option value="ffa85528" label="ffa85528">
+                <icon>special://skin/extras/colors/ffa85528.png</icon>
+            </option>
+            <option value="ffa89528" label="ffa89528">
+                <icon>special://skin/extras/colors/ffa89528.png</icon>
+            </option>
+            <option value="ffe5b535" label="ffe5b535">
+                <icon>special://skin/extras/colors/ffe5b535.png</icon>
+            </option>
+            <option value="ffbce535" label="ffbce535">
+                <icon>special://skin/extras/colors/ffbce535.png</icon>
+            </option>
+            <option value="ff64e535" label="ff64e535">
+                <icon>special://skin/extras/colors/ff64e535.png</icon>
+            </option>
+            <option value="ff35e55e" label="ff35e55e">
+                <icon>special://skin/extras/colors/ff35e55e.png</icon>
+            </option>
+            <option value="ff35e5b6" label="ff35e5b6">
+                <icon>special://skin/extras/colors/ff35e5b6.png</icon>
+            </option>
+            <option value="ff35bce5" label="ff35bce5">
+                <icon>special://skin/extras/colors/ff35bce5.png</icon>
+            </option>
+            <option value="ff3564e5" label="ff3564e5">
+                <icon>special://skin/extras/colors/ff3564e5.png</icon>
+            </option>
+            <option value="ff5e35e5" label="ff5e35e5">
+                <icon>special://skin/extras/colors/ff5e35e5.png</icon>
+            </option>
+            <option value="ffb635e5" label="ffb635e5">
+                <icon>special://skin/extras/colors/ffb635e5.png</icon>
+            </option>
+            <option value="ffe535bc" label="ffe535bc">
+                <icon>special://skin/extras/colors/ffe535bc.png</icon>
+            </option>
+            <option value="ffe53564" label="ffe53564">
+                <icon>special://skin/extras/colors/ffe53564.png</icon>
+            </option>
+            <option value="ffe55e35" label="ffe55e35">
+                <icon>special://skin/extras/colors/ffe55e35.png</icon>
+            </option>
+        </options>
+    </property>
+
+    <buttons>
+        <button id="309" property="widget" type="widget" rename="true" />
+        <button id="310" property="background" type="background" />
+        <button id="9702" property="PosterWidget" type="toggle" />
+        <button id="9701" property="tilecolor" type="options" title="$LOCALIZE[31128]" showNone="true" showIcons="true" />
+    </buttons>
+</properties>

@@ -41,15 +41,19 @@
     </include>
 
     <variable name="Defs_TMDBH_List_Content">
-        <value condition="String.IsEqual(Window.Property(list),Director)">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;nextpage=false</value>
-        <value condition="String.IsEqual(Window.Property(list),CastInMovies)">plugin://plugin.video.themoviedb.helper/?info=stars_in_movies&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
-        <value condition="String.IsEqual(Window.Property(list),CastInTvShows)">plugin://plugin.video.themoviedb.helper/?info=stars_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
-        <value condition="String.IsEqual(Window.Property(list),CrewInMovies)">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
-        <value condition="String.IsEqual(Window.Property(list),CrewInTvShows)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
+        <value condition="String.IsEqual(Window.Property(list),Director)">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;nextpage=false</value>
+        <value condition="String.IsEqual(Window.Property(list),CastInMovies)">plugin://plugin.video.themoviedb.helper/?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
+        <value condition="String.IsEqual(Window.Property(list),CastInTvShows)">plugin://plugin.video.themoviedb.helper/?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
+        <value condition="String.IsEqual(Window.Property(list),CrewInMovies)">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
+        <value condition="String.IsEqual(Window.Property(list),CrewInTvShows)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Defs_TMDBH_List_Label">
         <value condition="String.IsEqual(Window.Property(list),Director)">$LOCALIZE[20186]</value>
+    </variable>
+
+    <variable name="AutoCompletionContentVar">
+        <value condition="System.AddonIsEnabled(plugin.program.autocompletion) + !System.HasHiddenInput">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
     </variable>
 
     <include name="Defs_Store_Content"><content target="$PARAM[include_target]">$PARAM[include_content]</content></include>
@@ -124,7 +128,7 @@
                 <usealttexture>Control.HasFocus(814$PARAM[id]) | Control.HasFocus(815$PARAM[id])</usealttexture>
                 <label>$INFO[Skin.String(Store_Widget$PARAM[id]_Title)]</label>
                 <altlabel>[COLOR=Selected]$INFO[Skin.String(Store_Widget$PARAM[id]_Title)][/COLOR]</altlabel>
-                <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Store_Widget$PARAM[id]_Content&amp;skinWidgetName=Store_Widget$PARAM[id]_Title&amp;skinWidgetTarget=Store_Widget$PARAM[id]_Target)</onclick>
+                <onclick>RunScript(script.skinshortcuts,type=skinstring,skinPath=Store_Widget$PARAM[id]_Content,skinLabel=Store_Widget$PARAM[id]_Title,skinTarget=Store_Widget$PARAM[id]_Target)</onclick>
                 <height>72</height>
                 <include>Defs_OptionButton</include>
             </control>
@@ -459,23 +463,23 @@
             <width>100%</width>
             <label>31097</label>
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid].Label)]</label2>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(action),ActivateWindow($PARAM[hubid])) | String.IsEqual(Container(211).ListItem.Property(path),$PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <include>Defs_OptionButton</include>
-            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetTarget=Widget.$PARAM[hubid].Type)</onclick>
+            <onclick>RunScript(script.skinshortcuts,type=skinstring,skinPath=Widget.$PARAM[hubid],skinLabel=Widget.$PARAM[hubid].Label,skinTarget=Widget.$PARAM[hubid].Type)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
             <width>100%</width>
             <label>31096</label>
             <include>Defs_OptionButton</include>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
+            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(action),ActivateWindow($PARAM[hubid])) | String.IsEqual(Container(211).ListItem.Property(path),$PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <onclick>RunScript(script.skinshortcuts,type=manage,menu=x$PARAM[hubid])</onclick>
         </control>
     </include>
     <variable name="Defs_HomeWidget_Content">
         <value condition="String.IsEmpty(Container(9000).ListItem.Property(widget)) + !String.IsEmpty(Container(9000).ListItem.Property(background))">-</value>
         <value condition="String.IsEqual(Container(9000).ListItem.Property(widget),Weather) + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(Weather).Property(Current.FanartCode),resource://resource.images.weatherfanart.multi/,]/</value>
         <value condition="!String.IsEmpty(Skin.String(widget.background.fallback))">-</value>
-        <value condition="[String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather)] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(Weather).Property(Current.FanartCode),resource://resource.images.weatherfanart.multi/,]/</value>
+        <value condition="[String.IsEqual(Skin.String(home.fallbackwidget),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.node),Weather) | String.IsEqual(Skin.String(home.fallbackwidget.type),weather)] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(Weather).Property(Current.FanartCode),resource://resource.images.weatherfanart.multi/,]/</value>
         <value condition="!String.IsEmpty(Skin.String(home.fallbackwidget))">$INFO[Skin.String(home.fallbackwidget)]</value>
         <value>special://skin/extras/playlists/RandomMovies.xsp</value>
     </variable>
@@ -676,6 +680,13 @@
                     <onclick>activatewindow(eventlog)</onclick>
                     <icon>special://skin/extras/icons/year.png</icon>
                     <visible>!System.HasAddon(service.libreelec.settings)</visible>
+                </item>
+                <item id="15">
+                    <description>Games</description>
+                    <label>$LOCALIZE[15016]</label>
+                    <label2>$LOCALIZE[35007] • $LOCALIZE[35234]</label2>
+                    <onclick>activatewindow(GameSettings)</onclick>
+                    <icon>special://skin/extras/icons/games.png</icon>
                 </item>
                 <item id="19">
                     <description>LibreElec</description>

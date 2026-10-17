@@ -16,7 +16,7 @@
                     <right>10</right>
                     <include>Object_FlatBackground</include>
                     <control type="image">
-                        <texture background="true">$INFO[ListITem.Icon]</texture>
+                        <texture background="true">$INFO[ListItem.Icon]</texture>
                         <bordersize>10</bordersize>
                     </control>
                 </control>
@@ -29,7 +29,7 @@
                     <right>10</right>
                     <include>Object_FlatBackground</include>
                     <control type="image">
-                        <texture background="true">$INFO[ListITem.Icon]</texture>
+                        <texture background="true">$INFO[ListItem.Icon]</texture>
                         <bordersize>0</bordersize>
                     </control>
                 </control>

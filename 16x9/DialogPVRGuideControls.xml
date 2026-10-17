@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">602</defaultcontrol>
+    <controls>
+        <include>GlobalOverlay</include>
+        <control type="button">
+            <description>background close area</description>
+            <left>0</left>
+            <top>0</top>
+            <width>100%</width>
+            <bottom>260</bottom>
+            <texturefocus />
+            <texturenofocus />
+            <onclick>Action(close)</onclick>
+        </control>
+        <control type="group">
+            <bottom>40</bottom>
+            <centerleft>50%</centerleft>
+            <width>1792</width>
+            <height>220</height>
+            <include>Animation_SlideIn</include>
+            <include>Animation_FadeOut</include>
+            <include>Dialog_Background</include>
+            <include content="Dialog_Top_IconHeader">
+                <param name="label" value="$LOCALIZE[19069]" />
+                <param name="icon" value="special://skin/extras/icons/livetv.png" />
+            </include>
+            <control type="grouplist" id="201">
+                <left>bigpad</left>
+                <right>bigpad</right>
+                <bottom>bigpad</bottom>
+                <height>69</height>
+                <align>center</align>
+                <itemgap>12</itemgap>
+                <orientation>horizontal</orientation>
+                <control type="button" id="600">
+                    <width>130</width>
+                    <align>center</align>
+                    <label>|&lt;&lt;</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(FirstProgramme)</onclick>
+                </control>
+                <control type="button" id="601">
+                    <width>130</width>
+                    <align>center</align>
+                    <label>-12h</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(-12)</onclick>
+                </control>
+                <control type="button" id="602">
+                    <width>160</width>
+                    <align>center</align>
+                    <label>$LOCALIZE[19030]</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(CurrentProgramme)</onclick>
+                </control>
+                <control type="button" id="603">
+                    <width>130</width>
+                    <align>center</align>
+                    <label>+12h</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(+12)</onclick>
+                </control>
+                <control type="button" id="604">
+                    <width>130</width>
+                    <align>center</align>
+                    <label>&gt;&gt;|</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(LastProgramme)</onclick>
+                </control>
+                <control type="button" id="605">
+                    <width>170</width>
+                    <align>center</align>
+                    <label>$LOCALIZE[19288]</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(SelectDate)</onclick>
+                </control>
+                <control type="button" id="70040">
+                    <width>140</width>
+                    <align>center</align>
+                    <label>CH |&lt;</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(FirstChannel)</onclick>
+                </control>
+                <control type="button" id="70041">
+                    <width>150</width>
+                    <align>center</align>
+                    <label>$LOCALIZE[19029]</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(PlayingChannel)</onclick>
+                    <visible>PVR.IsPlayingTV | PVR.IsPlayingRadio | PVR.IsPlayingEpgTag</visible>
+                </control>
+                <control type="button" id="70042">
+                    <width>140</width>
+                    <align>center</align>
+                    <label>CH &gt;|</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(LastChannel)</onclick>
+                </control>
+                <control type="button" id="70043">
+                    <width>120</width>
+                    <align>center</align>
+                    <label>&lt; $LOCALIZE[19141]</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(PreviousGroup)</onclick>
+                </control>
+                <control type="button" id="70044">
+                    <width>120</width>
+                    <align>center</align>
+                    <label>$LOCALIZE[19141] &gt;</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(NextGroup)</onclick>
+                </control>
+                <control type="button" id="70045">
+                    <width>170</width>
+                    <align>center</align>
+                    <label>$LOCALIZE[19141]</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>PVR.EpgGridControl(SelectGroup)</onclick>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+    <!-- MAIN MENU -->
+    <menu name="mainmenu" container="9000">
+        <allow widgets="true" backgrounds="true" submenus="true" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9000).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9000).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9000).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9000).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9000).ListItem.Property(action),favourites)">SetProperty(FO9001,2,home)</action>
+            <action when="before" condition="String.Contains(Container(9000).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9000).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9000).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9000).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9000).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9000).ListItem.Property(path)],home)</action>
+            <action when="before" condition="Window.IsActive(PlayerControls.xml)">Close</action>
+        </defaults>
+
+        <item name="videos" submenu="videos">
+            <label>$LOCALIZE[3]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <action>ActivateWindow(Videos,VideoLibrary)</action>
+        </item>
+        <item name="movies" submenu="movies">
+            <label>$LOCALIZE[20342]</label>
+            <label2>Hub 1101</label2>
+            <icon>special://skin/extras/icons/film.png</icon>
+            <action>ActivateWindow(1101)</action>
+        </item>
+        <item name="tvshows" submenu="tvshows">
+            <label>$LOCALIZE[20343]</label>
+            <label2>Hub 1102</label2>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(1102)</action>
+        </item>
+        <item name="music" submenu="music">
+            <label>$LOCALIZE[2]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/songs.png</icon>
+            <action>ActivateWindow(Music)</action>
+        </item>
+        <item name="livetv" submenu="livetv">
+            <label>$LOCALIZE[31015]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/livetv.png</icon>
+            <action>ActivateWindow(TVChannels)</action>
+            <visible>System.HasPVRAddon</visible>
+        </item>
+        <item name="pictures" submenu="pictures">
+            <label>$LOCALIZE[1]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/pictures.png</icon>
+            <action>ActivateWindow(Pictures)</action>
+        </item>
+        <item name="programs">
+            <label>$LOCALIZE[0]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/addons.png</icon>
+            <action>ActivateWindow(Programs)</action>
+        </item>
+        <item name="weather">
+            <label>$LOCALIZE[8]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/sun.png</icon>
+            <action>ActivateWindow(Weather)</action>
+            <visible>!String.IsEmpty(Weather.Plugin)</visible>
+        </item>
+        <item name="settings" submenu="settings">
+            <label>$LOCALIZE[10004]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/settings.png</icon>
+            <action>ActivateWindow(Settings)</action>
+            <protect type="all" heading="$LOCALIZE[31103]" message="$LOCALIZE[31104]" />
+        </item>
+        <item name="favourites">
+            <label>$LOCALIZE[1036]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/favourites.png</icon>
+            <action>ActivateWindow(FavouritesBrowser)</action>
+        </item>
+        <item name="power">
+            <label>$LOCALIZE[33060]</label>
+            <label2>Common Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>ActivateWindow(shutdownmenu)</action>
+        </item>
+    </menu>
+
+    <!-- POWER MENU -->
+    <menu name="powermenu">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="Window.IsActive(DialogButtonMenu.xml)">Close</action>
+        </defaults>
+        <item name="reloadskin">
+            <label>$LOCALIZE[31171]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>ReloadSkin()</action>
+        </item>
+        <item name="quit">
+            <label>$LOCALIZE[13012]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>Quit()</action>
+            <visible>System.ShowExitButton</visible>
+        </item>
+        <item name="powerdown">
+            <label>$LOCALIZE[13016]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>Powerdown()</action>
+            <visible>System.CanPowerDown</visible>
+        </item>
+        <item name="suspend">
+            <label>$LOCALIZE[13011]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>Suspend()</action>
+            <visible>System.CanSuspend</visible>
+        </item>
+        <item name="hibernate">
+            <label>$LOCALIZE[13010]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>Hibernate()</action>
+            <visible>System.CanHibernate</visible>
+        </item>
+        <item name="reset">
+            <label>$LOCALIZE[13013]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>Reset()</action>
+            <visible>System.CanReboot</visible>
+        </item>
+        <item name="logoff">
+            <label>$LOCALIZE[20126]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>dialog.close(all,true)</action>
+            <action primary="true">System.LogOff</action>
+            <visible>System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)</visible>
+            <visible>System.Loggedon</visible>
+        </item>
+        <item name="mastermode">
+            <label>$LOCALIZE[20046]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>mastermode</action>
+            <visible>System.HasLocks</visible>
+        </item>
+        <item name="inhibit-on">
+            <label>$LOCALIZE[13017]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>InhibitIdleShutdown(true)</action>
+            <visible>System.HasShutdown + !System.IsInhibit</visible>
+        </item>
+        <item name="inhibit-off">
+            <label>$LOCALIZE[13018]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>InhibitIdleShutdown(false)</action>
+            <visible>System.HasShutdown + System.IsInhibit</visible>
+        </item>
+        <item name="shutdowntimer-on">
+            <label>$LOCALIZE[20150]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>AlarmClock(shutdowntimer,Shutdown())</action>
+            <visible>!System.HasAlarm(shutdowntimer)</visible>
+            <visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+        </item>
+        <item name="shutdowntimer-off">
+            <label>$LOCALIZE[20151]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>CancelAlarm(shutdowntimer)</action>
+            <visible>System.HasAlarm(shutdowntimer)</visible>
+        </item>
+        <item name="settings">
+            <label>$LOCALIZE[5]</label>
+            <label2>Power Menu Shortcut</label2>
+            <icon>special://skin/extras/icons/power.png</icon>
+            <action>ActivateWindow(Settings)</action>
+        </item>
+    </menu>
+
+    <!-- HUB MENUS x1101 - x1109 & x1111 - x1119 -->
+    <menu name="x1101" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+        <item name="movies-titles">
+            <label>$LOCALIZE[20342]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/film.png</icon>
+            <action>ActivateWindow(Videos,MovieTitles,return)</action>
+        </item>
+        <item name="movies-recent-added">
+            <label>$LOCALIZE[31100]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+            <action>ActivateWindow(Videos,RecentlyAddedMovies,return)</action>
+        </item>
+        <item name="movies-recent-played">
+            <label>$LOCALIZE[31101]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/recent.png</icon>
+            <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentMovies.xsp,return)</action>
+        </item>
+        <item name="movies-random">
+            <label>$LOCALIZE[31102]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/signpost.png</icon>
+            <action>PlayMedia(special://skin/extras/playlists/RandomMovies.xsp)</action>
+        </item>
+        <item name="movies-search">
+            <label>$LOCALIZE[137]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/search.png</icon>
+            <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true)</action>
+        </item>
+        <item name="movies-genres">
+            <label>$LOCALIZE[135]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/genre.png</icon>
+            <action>ActivateWindow(Videos,MovieGenres,return)</action>
+        </item>
+        <item name="movies-directors">
+            <label>$LOCALIZE[20348]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/director.png</icon>
+            <action>ActivateWindow(Videos,MovieDirectors,return)</action>
+        </item>
+        <item name="movies-actors">
+            <label>$LOCALIZE[344]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/actor.png</icon>
+            <action>ActivateWindow(Videos,MovieActors,return)</action>
+        </item>
+        <item name="movies-sets">
+            <label>$LOCALIZE[20434]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/year.png</icon>
+            <action>ActivateWindow(Videos,MovieSets,return)</action>
+        </item>
+        <item name="movies-playlists">
+            <label>$LOCALIZE[136]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/playlist.png</icon>
+            <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
+        </item>
+        <item name="movies-files">
+            <label>$LOCALIZE[1214]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(Videos,Files,return)</action>
+        </item>
+        <item name="movies-addons">
+            <label>$LOCALIZE[24001]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <action>ActivateWindow(videos,addons://sources/video/,return)</action>
+        </item>
+        <item name="movies-update">
+            <label>$LOCALIZE[653]</label>
+            <label2>Movie Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/update.png</icon>
+            <action>UpdateLibrary(video)</action>
+        </item>
+    </menu>
+
+    <menu name="x1102" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+        <item name="tvshows-titles">
+            <label>$LOCALIZE[20343]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(Videos,TvShowTitles,return)</action>
+        </item>
+        <item name="tvshows-recent-added">
+            <label>$LOCALIZE[31100]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+            <action>ActivateWindow(Videos,RecentlyAddedEpisodes,return)</action>
+        </item>
+        <item name="tvshows-recent-played">
+            <label>$LOCALIZE[31101]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/recent.png</icon>
+            <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentEpisodes.xsp,return)</action>
+        </item>
+        <item name="tvshows-random">
+            <label>$LOCALIZE[31102]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/signpost.png</icon>
+            <action>PlayMedia(special://skin/extras/playlists/RandomEpisodes.xsp)</action>
+        </item>
+        <item name="tvshows-search">
+            <label>$LOCALIZE[137]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/search.png</icon>
+            <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true)</action>
+        </item>
+        <item name="tvshows-genres">
+            <label>$LOCALIZE[135]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/genre.png</icon>
+            <action>ActivateWindow(Videos,TvShowGenres,return)</action>
+        </item>
+        <item name="tvshows-studios">
+            <label>$LOCALIZE[20388]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/director.png</icon>
+            <action>ActivateWindow(Videos,TvShowStudios,return)</action>
+        </item>
+        <item name="tvshows-actors">
+            <label>$LOCALIZE[344]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/actor.png</icon>
+            <action>ActivateWindow(Videos,TvShowActors,return)</action>
+        </item>
+        <item name="tvshows-years">
+            <label>$LOCALIZE[652]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/year.png</icon>
+            <action>ActivateWindow(Videos,TvShowYears,return)</action>
+        </item>
+        <item name="tvshows-playlists">
+            <label>$LOCALIZE[136]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/playlist.png</icon>
+            <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
+        </item>
+        <item name="tvshows-files">
+            <label>$LOCALIZE[1214]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(Videos,Files,return)</action>
+        </item>
+        <item name="tvshows-addons">
+            <label>$LOCALIZE[24001]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <action>ActivateWindow(videos,addons://sources/video/,return)</action>
+        </item>
+        <item name="tvshows-update">
+            <label>$LOCALIZE[653]</label>
+            <label2>Episode Hub Shortcut</label2>
+            <icon>special://skin/extras/icons/update.png</icon>
+            <action>UpdateLibrary(video)</action>
+        </item>
+    </menu>
+
+    <menu name="x1103" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1104" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1105" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1106" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1107" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1108" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1109" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1111" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1112" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1113" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1114" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1115" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1116" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1117" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1118" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+    <menu name="x1119" container="9501">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="String.StartsWith(Container(9501).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9501).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9501).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9501).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9501).ListItem.Property(action),favourites)">SetProperty(WindowBaseReturn,$INFO[Container(9501).ListItem.Property(path)],home)</action>
+        </defaults>
+    </menu>
+
+    <!-- SUBMENUS -->
+    <submenu name="livetv" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="tvguide">
+            <label>$LOCALIZE[22020]</label>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(TVGuide)</action>
+            <visible>System.HasPVRAddon</visible>
+        </item>
+        <item name="tvrecordings">
+            <label>$LOCALIZE[19017]</label>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(TVRecordings)</action>
+            <visible>System.HasPVRAddon</visible>
+        </item>
+        <item name="tvtimers">
+            <label>$LOCALIZE[19040]</label>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(TVTimers)</action>
+            <visible>System.HasPVRAddon</visible>
+        </item>
+        <item name="tvsearch">
+            <label>$LOCALIZE[137]</label>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(TVSearch)</action>
+            <visible>System.HasPVRAddon</visible>
+        </item>
+    </submenu>
+
+    <submenu name="videos" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="musicvideos">
+            <label>$LOCALIZE[20389]</label>
+            <icon>special://skin/extras/icons/musicvideo.png</icon>
+            <action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+            <visible>Library.HasContent(MusicVideos)</visible>
+        </item>
+        <item name="videofiles">
+            <label>$LOCALIZE[744]</label>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(Videos,Files,return)</action>
+        </item>
+        <item name="videoaddons">
+            <label>$LOCALIZE[1037]</label>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <action>ActivateWindow(Videos,Addons,return)</action>
+        </item>
+    </submenu>
+
+    <submenu name="movies" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="movies-recent">
+            <label>$LOCALIZE[20386]</label>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+            <action>ActivateWindow(Videos,videodb://recentlyaddedmovies/,return)</action>
+        </item>
+        <item name="movies-sets">
+            <label>$LOCALIZE[20434]</label>
+            <icon>special://skin/extras/icons/sets.png</icon>
+            <action>ActivateWindow(Videos,videodb://movies/sets/,return)</action>
+            <visible>Library.HasContent(MovieSets)</visible>
+        </item>
+        <item name="movies-titles">
+            <label>$LOCALIZE[369]</label>
+            <icon>special://skin/extras/icons/film.png</icon>
+            <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+            <visible>Library.HasContent(Movies)</visible>
+        </item>
+        <item name="movies-genres">
+            <label>$LOCALIZE[135]</label>
+            <icon>special://skin/extras/icons/genre.png</icon>
+            <action>ActivateWindow(Videos,videodb://movies/genres/,return)</action>
+            <visible>Library.HasContent(Movies)</visible>
+        </item>
+        <item name="movies-years">
+            <label>$LOCALIZE[562]</label>
+            <icon>special://skin/extras/icons/year.png</icon>
+            <action>ActivateWindow(Videos,videodb://movies/years/,return)</action>
+            <visible>Library.HasContent(Movies)</visible>
+        </item>
+        <item name="movies-actors">
+            <label>$LOCALIZE[344]</label>
+            <icon>special://skin/extras/icons/artist.png</icon>
+            <action>ActivateWindow(Videos,videodb://movies/actors/,return)</action>
+            <visible>Library.HasContent(Movies)</visible>
+        </item>
+    </submenu>
+
+    <submenu name="tvshows" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="tvshows-recent">
+            <label>$LOCALIZE[20387]</label>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+            <action>ActivateWindow(Videos,videodb://recentlyaddedepisodes/,return)</action>
+        </item>
+        <item name="tvshows-titles">
+            <label>$LOCALIZE[369]</label>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+            <visible>Library.HasContent(TVShows)</visible>
+        </item>
+        <item name="tvshows-genres">
+            <label>$LOCALIZE[135]</label>
+            <icon>special://skin/extras/icons/genre.png</icon>
+            <action>ActivateWindow(Videos,videodb://tvshows/genres/,return)</action>
+            <visible>Library.HasContent(TVShows)</visible>
+        </item>
+        <item name="tvshows-years">
+            <label>$LOCALIZE[562]</label>
+            <icon>special://skin/extras/icons/year.png</icon>
+            <action>ActivateWindow(Videos,videodb://tvshows/years/,return)</action>
+            <visible>Library.HasContent(TVShows)</visible>
+        </item>
+        <item name="tvshows-actors">
+            <label>$LOCALIZE[344]</label>
+            <icon>special://skin/extras/icons/artist.png</icon>
+            <action>ActivateWindow(Videos,videodb://tvshows/actors/,return)</action>
+            <visible>Library.HasContent(TVShows)</visible>
+        </item>
+    </submenu>
+
+    <submenu name="music" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="music-files">
+            <label>$LOCALIZE[744]</label>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(Music,Files,Return)</action>
+        </item>
+        <item name="music-library">
+            <label>$LOCALIZE[15100]</label>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(Music,MusicLibrary,return)</action>
+        </item>
+        <item name="music-addons">
+            <label>$LOCALIZE[1038]</label>
+            <icon>special://skin/extras/icons/songs.png</icon>
+            <action>ActivateWindow(Music,Addons,return)</action>
+        </item>
+    </submenu>
+
+    <submenu name="pictures" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="picture-addons">
+            <label>$LOCALIZE[1039]</label>
+            <icon>special://skin/extras/icons/pictures.png</icon>
+            <action>ActivateWindow(Pictures,Addons,return)</action>
+        </item>
+    </submenu>
+
+    <submenu name="settings" standalone="false">
+        <allow widgets="true" backgrounds="false" submenus="false" />
+        <item name="filemanager">
+            <label>$LOCALIZE[7]</label>
+            <icon>special://skin/extras/icons/files.png</icon>
+            <action>ActivateWindow(FileManager)</action>
+        </item>
+        <item name="profiles">
+            <label>$LOCALIZE[13200]</label>
+            <icon>special://skin/extras/icons/actor.png</icon>
+            <action>ActivateWindow(Profiles)</action>
+        </item>
+        <item name="systeminfo">
+            <label>$LOCALIZE[10007]</label>
+            <icon>special://skin/extras/icons/sysinfo.png</icon>
+            <action>ActivateWindow(SystemInfo)</action>
+        </item>
+        <item name="eventlog">
+            <label>$LOCALIZE[14111]</label>
+            <icon>special://skin/extras/icons/actor.png</icon>
+            <action>ActivateWindow(EventLog,events://,return)</action>
+            <visible>system.getbool(eventlog.enabled)</visible>
+        </item>
+    </submenu>
+
+    <!-- SHORTCUT PICKER GROUPINGS -->
+    <groupings>
+        <group name="hubs" label="$LOCALIZE[31139]" icon="special://skin/extras/icons/addon.png">
+            <shortcut name="hub-1101" label="$LOCALIZE[31093]" type="Hub 1101" icon="special://skin/extras/icons/film.png">
+                <action>ActivateWindow(1101)</action>
+            </shortcut>
+            <shortcut name="hub-1102" label="$LOCALIZE[31094]" type="Hub 1102" icon="special://skin/extras/icons/tv.png">
+                <action>ActivateWindow(1102)</action>
+            </shortcut>
+            <shortcut name="hub-1103" label="$LOCALIZE[31123] 1103" type="Hub 1103" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1103)</action>
+            </shortcut>
+            <shortcut name="hub-1104" label="$LOCALIZE[31123] 1104" type="Hub 1104" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1104)</action>
+            </shortcut>
+            <shortcut name="hub-1105" label="$LOCALIZE[31123] 1105" type="Hub 1105" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1105)</action>
+            </shortcut>
+            <shortcut name="hub-1106" label="$LOCALIZE[31123] 1106" type="Hub 1106" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1106)</action>
+            </shortcut>
+            <shortcut name="hub-1107" label="$LOCALIZE[31123] 1107" type="Hub 1107" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1107)</action>
+            </shortcut>
+            <shortcut name="hub-1108" label="$LOCALIZE[31123] 1108" type="Hub 1108" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1108)</action>
+            </shortcut>
+            <shortcut name="hub-1109" label="$LOCALIZE[31123] 1109" type="Hub 1109" icon="special://skin/extras/icons/addon.png">
+                <action>ActivateWindow(1109)</action>
+            </shortcut>
+        </group>
+
+        <group name="common" label="$ADDON[script.skinshortcuts 32028]" icon="special://skin/extras/icons/files.png">
+            <shortcut name="videos" label="$LOCALIZE[3]" icon="special://skin/extras/icons/video-addons.png">
+                <action>ActivateWindow(Videos,VideoLibrary)</action>
+            </shortcut>
+            <shortcut name="movies" label="$LOCALIZE[342]" icon="special://skin/extras/icons/film.png">
+                <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+            </shortcut>
+            <shortcut name="tvshows" label="$LOCALIZE[20343]" icon="special://skin/extras/icons/tv.png">
+                <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+            </shortcut>
+            <shortcut name="musicvideos" label="$LOCALIZE[20389]" icon="special://skin/extras/icons/musicvideo.png">
+                <action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+            </shortcut>
+            <shortcut name="livetv" label="$LOCALIZE[31015]" icon="special://skin/extras/icons/livetv.png">
+                <action>ActivateWindow(TVChannels)</action>
+            </shortcut>
+            <shortcut name="radio" label="$LOCALIZE[19021]" icon="special://skin/extras/icons/radio.png">
+                <action>ActivateWindow(RadioChannels)</action>
+            </shortcut>
+            <shortcut name="music" label="$LOCALIZE[2]" icon="special://skin/extras/icons/songs.png">
+                <action>ActivateWindow(Music)</action>
+            </shortcut>
+            <shortcut name="pictures" label="$LOCALIZE[1]" icon="special://skin/extras/icons/pictures.png">
+                <action>ActivateWindow(Pictures)</action>
+            </shortcut>
+            <shortcut name="programs" label="$LOCALIZE[0]" icon="special://skin/extras/icons/addons.png">
+                <action>ActivateWindow(Programs)</action>
+            </shortcut>
+            <shortcut name="games" label="$LOCALIZE[15016]" icon="special://skin/extras/icons/games.png">
+                <action>ActivateWindow(Games)</action>
+            </shortcut>
+            <shortcut name="weather" label="$LOCALIZE[8]" icon="special://skin/extras/icons/sun.png">
+                <action>ActivateWindow(Weather)</action>
+            </shortcut>
+            <shortcut name="favourites" label="$LOCALIZE[1036]" icon="special://skin/extras/icons/favourites.png">
+                <action>ActivateWindow(FavouritesBrowser)</action>
+            </shortcut>
+            <shortcut name="showcase" label="Showcase" icon="special://skin/extras/icons/playlist.png">
+                <action>ActivateWindow(1131)</action>
+            </shortcut>
+            <shortcut name="filemanager" label="$LOCALIZE[7]" icon="special://skin/extras/icons/files.png">
+                <action>ActivateWindow(FileManager)</action>
+            </shortcut>
+            <shortcut name="settings" label="$LOCALIZE[10004]" icon="special://skin/extras/icons/settings.png">
+                <action>ActivateWindow(Settings)</action>
+            </shortcut>
+            <shortcut name="power" label="$LOCALIZE[33060]" icon="special://skin/extras/icons/power.png">
+                <action>ActivateWindow(shutdownmenu)</action>
+            </shortcut>
+        </group>
+
+        <group name="video" label="$LOCALIZE[3]" icon="special://skin/extras/icons/video.png">
+            <content source="nodes" target="video" />
+            <group name="video-playlists" label="$LOCALIZE[136]" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="video" />
+            </group>
+            <group name="video-addons" label="$LOCALIZE[1037]" icon="special://skin/extras/icons/video-addons.png">
+                <content source="addons" target="video" label="$LOCALIZE[1037]" />
+            </group>
+            <group name="video-sources" label="$LOCALIZE[20094]" icon="special://skin/extras/icons/files.png">
+                <content source="sources" target="video" />
+            </group>
+        </group>
+
+        <group name="music" label="$LOCALIZE[2]" icon="special://skin/extras/icons/songs.png">
+            <content source="nodes" target="music" />
+            <group name="music-playlists" label="$LOCALIZE[136]" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="music" />
+            </group>
+            <group name="music-addons" label="$LOCALIZE[1038]" icon="special://skin/extras/icons/songs.png">
+                <content source="addons" target="music" label="$LOCALIZE[1038]" />
+            </group>
+            <group name="music-sources" label="$LOCALIZE[20094]" icon="special://skin/extras/icons/files.png">
+                <content source="sources" target="music" />
+            </group>
+        </group>
+
+        <group name="pvr-tv" label="$LOCALIZE[19020]" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
+            <shortcut name="tv-channels" label="$LOCALIZE[19023]" icon="special://skin/extras/icons/livetv.png">
+                <action>ActivateWindow(TVChannels)</action>
+            </shortcut>
+            <shortcut name="tv-guide" label="$LOCALIZE[22020]" icon="special://skin/extras/icons/tv.png">
+                <action>ActivateWindow(TVGuide)</action>
+            </shortcut>
+            <shortcut name="tv-recordings" label="$LOCALIZE[19017]" icon="special://skin/extras/icons/tv.png">
+                <action>ActivateWindow(TVRecordings)</action>
+            </shortcut>
+            <shortcut name="tv-timers" label="$LOCALIZE[19040]" icon="special://skin/extras/icons/tv.png">
+                <action>ActivateWindow(TVTimers)</action>
+            </shortcut>
+            <shortcut name="tv-search" label="$LOCALIZE[137]" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(TVSearch)</action>
+            </shortcut>
+            <content source="pvr" target="tv" folder="$LOCALIZE[19023]" />
+        </group>
+
+        <group name="pvr-radio" label="$LOCALIZE[19021]" icon="special://skin/extras/icons/radio.png" visible="PVR.HasRadioChannels">
+            <shortcut name="radio-channels" label="$LOCALIZE[19024]" icon="special://skin/extras/icons/radio.png">
+                <action>ActivateWindow(RadioChannels)</action>
+            </shortcut>
+            <shortcut name="radio-guide" label="$LOCALIZE[22020]" icon="special://skin/extras/icons/radio.png">
+                <action>ActivateWindow(RadioGuide)</action>
+            </shortcut>
+            <shortcut name="radio-recordings" label="$LOCALIZE[19017]" icon="special://skin/extras/icons/radio.png">
+                <action>ActivateWindow(RadioRecordings)</action>
+            </shortcut>
+            <shortcut name="radio-timers" label="$LOCALIZE[19040]" icon="special://skin/extras/icons/radio.png">
+                <action>ActivateWindow(RadioTimers)</action>
+            </shortcut>
+            <shortcut name="radio-search" label="$LOCALIZE[137]" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(RadioSearch)</action>
+            </shortcut>
+            <content source="pvr" target="radio" folder="$LOCALIZE[19024]" />
+        </group>
+
+        <group name="pictures" label="$LOCALIZE[1]" icon="special://skin/extras/icons/pictures.png">
+            <content source="sources" target="pictures" />
+        </group>
+
+        <group name="addons" label="$LOCALIZE[24001]" icon="special://skin/extras/icons/addons.png">
+            <group name="addons-program" label="$LOCALIZE[10001]" icon="special://skin/extras/icons/addons.png">
+                <content source="addons" target="programs" label="$LOCALIZE[10001]" />
+            </group>
+            <group name="addons-video" label="$LOCALIZE[1037]" icon="special://skin/extras/icons/video-addons.png">
+                <content source="addons" target="video" label="$LOCALIZE[1037]" />
+            </group>
+            <group name="addons-audio" label="$LOCALIZE[1038]" icon="special://skin/extras/icons/songs.png">
+                <content source="addons" target="music" label="$LOCALIZE[1038]" />
+            </group>
+            <group name="addons-image" label="$LOCALIZE[1039]" icon="special://skin/extras/icons/pictures.png">
+                <content source="addons" target="pictures" label="$LOCALIZE[1039]" />
+            </group>
+            <group name="addons-game" label="$LOCALIZE[15016]" icon="special://skin/extras/icons/games.png">
+                <content source="addons" target="games" label="$LOCALIZE[15016]" />
+            </group>
+        </group>
+
+        <group name="favourites" label="$LOCALIZE[1036]" icon="special://skin/extras/icons/favourites.png">
+            <content source="favourites" />
+        </group>
+
+        <group name="settings" label="$LOCALIZE[10004]" icon="special://skin/extras/icons/settings.png">
+            <content source="settings" />
+        </group>
+
+        <group name="commands" label="$ADDON[script.skinshortcuts 32057]" icon="special://skin/extras/icons/power.png">
+            <content source="commands" />
+        </group>
+    </groupings>
+
+    <!-- ICON SOURCES -->
+    <icons>
+        <source label="$LOCALIZE[31075]">special://skin/extras/icons/</source>
+        <source label="$LOCALIZE[1024]">browse</source>
+    </icons>
+
+    <!-- ACTION & ICON OVERRIDES -->
+    <overrides>
+        <action replace="ActivateWindow(favourites)">ActivateWindow(favouritesbrowser)</action>
+        <action replace="ActivateWindow(Favourites)">ActivateWindow(FavouritesBrowser)</action>
+        <icons>
+            <source>special://skin/extras/icons/</source>
+            <icon replace="DefaultShortcut.png">addon.png</icon>
+            <icon replace="DefaultVideo.png">video.png</icon>
+            <icon replace="DefaultMovies.png">film.png</icon>
+            <icon replace="DefaultTVShows.png">tv.png</icon>
+            <icon replace="DefaultAudio.png">songs.png</icon>
+            <icon replace="DefaultMusicAlbums.png">songs.png</icon>
+            <icon replace="DefaultMusicVideos.png">musicvideo.png</icon>
+            <icon replace="DefaultPicture.png">pictures.png</icon>
+            <icon replace="DefaultProgram.png">addons.png</icon>
+            <icon replace="DefaultDVDFull.png">cd.png</icon>
+            <icon replace="DefaultFolder.png">files.png</icon>
+            <icon replace="UnknownUser.png">actor.png</icon>
+            <icon replace="DefaultVideoPlaylists.png">playlist.png</icon>
+            <icon replace="DefaultMusicPlaylists.png">playlist.png</icon>
+            <icon replace="DefaultPlaylist.png">playlist.png</icon>
+            <icon replace="DefaultRecentlyAddedMovies.png">recentlyadded.png</icon>
+            <icon replace="DefaultActor.png">artist.png</icon>
+            <icon replace="DefaultCountry.png">world.png</icon>
+            <icon replace="DefaultDirector.png">director.png</icon>
+            <icon replace="DefaultGenre.png">genre.png</icon>
+            <icon replace="DefaultMusicGenre.png">audiogenre.png</icon>
+            <icon replace="DefaultSets.png">sets.png</icon>
+            <icon replace="DefaultStudios.png">director.png</icon>
+            <icon replace="DefaultTags.png">tags.png</icon>
+            <icon replace="DefaultMovieTitle.png">film.png</icon>
+            <icon replace="DefaultTVShowTitle.png">tv.png</icon>
+            <icon replace="DefaultMusicVideoTitle.png">musicvideo.png</icon>
+            <icon replace="DefaultYear.png">year.png</icon>
+            <icon replace="DefaultRecentlyAddedEpisodes.png">recentlyadded.png</icon>
+            <icon replace="DefaultRecentlyAddedMusicVideos.png">recentlyadded.png</icon>
+            <icon replace="DefaultInProgressShows.png">recentlyadded.png</icon>
+            <icon replace="DefaultMusicArtists.png">artist.png</icon>
+            <icon replace="DefaultMusicGenres.png">audiogenre.png</icon>
+            <icon replace="DefaultMusicSongs.png">song.png</icon>
+            <icon replace="DefaultMusicYears.png">years.png</icon>
+            <icon replace="DefaultMusicTop100.png">top100.png</icon>
+            <icon replace="DefaultMusicTop100Albums.png">top100.png</icon>
+            <icon replace="DefaultMusicRecentlyAdded.png">recentlyadded.png</icon>
+            <icon replace="DefaultMusicRecentlyPlayed.png">recent.png</icon>
+            <icon replace="DefaultAddonVideo.png">video-addons.png</icon>
+            <icon replace="DefaultAddonMusic.png">songs.png</icon>
+            <icon replace="DefaultAddonProgram.png">addons.png</icon>
+            <icon replace="DefaultAddonPicture.png">pictures.png</icon>
+            <icon replace="DefaultAddonPVRClient.png">livetv.png</icon>
+        </icons>
+    </overrides>
+
+    <contextmenu>true</contextmenu>
+</menus>

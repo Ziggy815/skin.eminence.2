@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <defaultcontrol always="true">7</defaultcontrol>
+    <controls>
+        <include>GlobalOverlay</include>
+        <control type="group">
+            <top>dialogtop</top>
+            <bottom>133</bottom>
+            <centerleft>50%</centerleft>
+            <width>1460</width>
+            <include>Animation_SlideIn</include>
+            <include>Animation_FadeOut</include>
+            <include>Dialog_Background</include>
+            <include content="Dialog_Top_IconHeader">
+                <param name="label" value="$LOCALIZE[29900]" />
+                <param name="icon" value="special://skin/extras/icons/radio.png" />
+            </include>
+            <control type="group">
+                <top>80</top>
+                <left>bigpad</left>
+                <right>bigpad</right>
+                <bottom>100</bottom>
+                <control type="grouplist">
+                    <left>0</left>
+                    <width>680</width>
+                    <top>0</top>
+                    <bottom>0</bottom>
+                    <itemgap>10</itemgap>
+                    <orientation>vertical</orientation>
+                    <control type="label">
+                        <height>36</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <label>$LOCALIZE[179]</label>
+                    </control>
+                    <control type="textbox">
+                        <height>220</height>
+                        <font>Font-ListInfo</font>
+                        <label>$INFO[RDS.Band,[COLOR Selected]$LOCALIZE[29901]:[/COLOR] ,[CR]]$INFO[RDS.Artist,[COLOR Selected]$LOCALIZE[557]:[/COLOR] ,[CR]]$INFO[RDS.Title,[COLOR Selected]$LOCALIZE[556]:[/COLOR] ,[CR]]$INFO[RDS.Composer,[COLOR Selected]$LOCALIZE[29903]:[/COLOR] ,[CR]]$INFO[RDS.Conductor,[COLOR Selected]$LOCALIZE[29905]:[/COLOR] ,[CR]]$INFO[RDS.Album,[COLOR Selected]$LOCALIZE[558]:[/COLOR] ,[CR]]$INFO[RDS.Comment,[COLOR Selected]$LOCALIZE[569]:[/COLOR] ,]</label>
+                    </control>
+                    <control type="label">
+                        <height>36</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <label>$LOCALIZE[29909]</label>
+                    </control>
+                    <control type="textbox">
+                        <height>120</height>
+                        <font>Font-ListInfo</font>
+                        <label>$INFO[RDS.PhoneStudio,[COLOR Selected]$LOCALIZE[29910]:[/COLOR] ,[CR]]$INFO[RDS.EmailStudio,[COLOR Selected]$LOCALIZE[29911]:[/COLOR] ,[CR]]$INFO[RDS.SMSStudio,[COLOR Selected]$LOCALIZE[29912]:[/COLOR] ,[CR]]$INFO[RDS.PhoneHotline,[COLOR Selected]$LOCALIZE[29913] ($LOCALIZE[29910]):[/COLOR] ,[CR]]$INFO[RDS.EmailHotline,[COLOR Selected]$LOCALIZE[29913] ($LOCALIZE[29911]):[/COLOR] ,]</label>
+                    </control>
+                </control>
+                <control type="grouplist">
+                    <right>0</right>
+                    <width>680</width>
+                    <top>0</top>
+                    <bottom>0</bottom>
+                    <itemgap>10</itemgap>
+                    <orientation>vertical</orientation>
+                    <control type="label">
+                        <height>36</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <label>$LOCALIZE[29908]</label>
+                    </control>
+                    <control type="textbox">
+                        <height>220</height>
+                        <font>Font-ListInfo</font>
+                        <label>$INFO[RDS.ProgNow,[COLOR Selected]$LOCALIZE[19030]:[/COLOR] ,[CR]]$INFO[RDS.ProgNext,[COLOR Selected]$LOCALIZE[19031]:[/COLOR] ,[CR]]$INFO[RDS.ProgStyle,[COLOR Selected]$LOCALIZE[29902]:[/COLOR] ,[CR]]$INFO[RDS.ProgStation,[COLOR Selected]$LOCALIZE[19148]:[/COLOR] ,[CR]]$INFO[RDS.ProgHost,[COLOR Selected]$LOCALIZE[29906]:[/COLOR] ,[CR]]$INFO[RDS.ProgEditStaff,[COLOR Selected]$LOCALIZE[29907]:[/COLOR] ,[CR]]$INFO[RDS.ProgHomepage,[COLOR Selected]$LOCALIZE[29914]:[/COLOR] ,]</label>
+                    </control>
+                    <control type="label">
+                        <height>36</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <label>$LOCALIZE[29915] / $LOCALIZE[14304]</label>
+                    </control>
+                    <control type="textbox">
+                        <height>120</height>
+                        <font>Font-ListInfo</font>
+                        <label>$INFO[RDS.GetLine(3),,[CR]]$INFO[RDS.GetLine(2),,[CR]]$INFO[RDS.GetLine(1),,[CR]]$INFO[RDS.GetLine(0),,[CR]]$INFO[RDS.InfoNews,[COLOR Selected]$LOCALIZE[29916]:[/COLOR] ,[CR]]$INFO[RDS.InfoNewsLocal,[COLOR Selected]$LOCALIZE[29917]:[/COLOR] ,[CR]]$INFO[RDS.InfoSport,[COLOR Selected]$LOCALIZE[29918]:[/COLOR] ,[CR]]$INFO[RDS.InfoWeather,[COLOR Selected]$LOCALIZE[400]:[/COLOR] ,[CR]]$INFO[RDS.InfoOther,[COLOR Selected]$LOCALIZE[29921]:[/COLOR] ,]</label>
+                    </control>
+                </control>
+            </control>
+            <control type="grouplist" id="9000">
+                <centerleft>50%</centerleft>
+                <width>1420</width>
+                <bottom>bigpad</bottom>
+                <height>69</height>
+                <align>center</align>
+                <itemgap>20</itemgap>
+                <orientation>horizontal</orientation>
+                <control type="button" id="7">
+                    <align>center</align>
+                    <width>220</width>
+                    <label>186</label>
+                    <include>Defs_OptionButton2</include>
+                    <onclick>Action(Close)</onclick>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

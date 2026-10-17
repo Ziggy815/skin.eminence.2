@@ -292,8 +292,8 @@
                 <control type="group" description="info">
                     <left>posterh</left>
                     <right>0</right>
-                    <animation effect="slide" start="0" end="0,-64" time="200" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,-64" time="0" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + ![Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,-64" time="200" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + [Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,-64" time="0" condition="!Window.IsVisible(script-cu-lrclyrics-main.xml) + Window.IsVisible(musicosd) + ![Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | Player.ShowInfo]">Conditional</animation>
                     <control type="group">
                         <left>40</left>
                         <right>0</right>

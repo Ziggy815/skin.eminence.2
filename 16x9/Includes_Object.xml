@@ -189,6 +189,7 @@
             <width>220</width>
             <height>320</height>
             <visible>[!String.IsEmpty(Container(9001).ListItem($PARAM[id]).Art(poster)) | !String.IsEmpty(Container(9001).ListItem($PARAM[id]).Art(tvshow.poster))] + [String.IsEqual(Container(9001).ListItem($PARAM[id]).DBType,episode) | String.IsEqual(Container(9001).ListItem($PARAM[id]).DBType,tvshow) | String.IsEqual(Container(9001).ListItem($PARAM[id]).DBType,season) | String.IsEqual(Container(9001).ListItem($PARAM[id]).DBType,set) | String.IsEqual(Container(9001).ListItem($PARAM[id]).DBType,movie)]</visible>
+
             <control type="image">
                 <centerleft>50%</centerleft>
                 <width>220</width>
@@ -201,6 +202,7 @@
                 <visible>[Control.HasFocus(9001) | Control.HasFocus(9101)]</visible>
                 <visible>$PARAM[focuseditem]</visible>
             </control>
+
             <control type="group">
                 <centerleft>50%</centerleft>
                 <top>pad</top>

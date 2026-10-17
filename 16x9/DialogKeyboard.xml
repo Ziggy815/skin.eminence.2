@@ -10,27 +10,29 @@
             <left>50</left>
             <right>50</right>
             <bottom>50</bottom>
-            <!-- <control type="group">
+            <control type="group">
                 <left>-10</left>
                 <right>-10</right>
                 <top>-99</top>
                 <bottom>-10</bottom>
                 <include>Dialog_Background</include>
                 <visible>Integer.IsGreater(Container(8000).NumItems,0)</visible>
-            </control> -->
+            </control>
             <control type="group">
                 <left>-10</left>
                 <right>-10</right>
                 <top>-10</top>
                 <bottom>-10</bottom>
                 <include>Dialog_Background</include>
-                <!-- <visible>!Integer.IsGreater(Container(8000).NumItems,0)</visible> -->
+                <visible>!Integer.IsGreater(Container(8000).NumItems,0)</visible>
             </control>
-            <!-- <control type="panel" id="8000">
+            <control type="panel" id="8000">
+                <visible>System.AddonIsEnabled(plugin.program.autocompletion) + !System.HasHiddenInput</visible>
                 <height>69</height>
                 <top>-69</top>
                 <left>bigpad</left>
                 <right>10</right>
+                <onup>5000</onup>
                 <ondown>9001</ondown>
                 <orientation>horizontal</orientation>
                 <itemlayout height="69" width="358">
@@ -74,8 +76,8 @@
                         </control>
                     </control>
                 </focusedlayout>
-                <content>plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</content>
-            </control> -->
+                <content>$VAR[AutoCompletionContentVar]</content>
+            </control>
             <include>Animation_Bottom</include>
             <!-- Heading -->
             <control type="label" id="311">
@@ -92,7 +94,7 @@
                 <width>340</width>
                 <height>660</height>
                 <itemgap>pad</itemgap>
-                <onup>noop</onup>
+                <onup>312</onup>
                 <ondown>312</ondown>
                 <orientation>vertical</orientation>
                 <scrolltime tween="sine" easing="out">240</scrolltime>
@@ -170,7 +172,8 @@
                     <top>0</top>
                     <width>100%</width>
                     <height>100%</height>
-                    <onup>8000</onup>
+                    <onup condition="Integer.IsGreater(Container(8000).NumItems,0)">8000</onup>
+                    <onup condition="!Integer.IsGreater(Container(8000).NumItems,0)">5000</onup>
                     <onright>9001</onright>
                     <ondown>1000</ondown>
                     <align>center</align>
@@ -526,7 +529,8 @@
                     <itemgap>pad</itemgap>
                     <onleft>307</onleft>
                     <onright>307</onright>
-                    <ondown>312</ondown>
+                    <ondown condition="Integer.IsGreater(Container(8000).NumItems,0)">8000</ondown>
+                    <ondown condition="!Integer.IsGreater(Container(8000).NumItems,0)">312</ondown>
                     <orientation>horizontal</orientation>
 
                     <!-- SPACE -->
@@ -573,7 +577,8 @@
                 <itemgap>pad</itemgap>
                 <onleft>312</onleft>
                 <onright>312</onright>
-                <onup>8000</onup>
+                <onup condition="Integer.IsGreater(Container(8000).NumItems,0)">8000</onup>
+                <onup condition="!Integer.IsGreater(Container(8000).NumItems,0)">5000</onup>
                 <ondown>1000</ondown>
                 <orientation>horizontal</orientation>
 

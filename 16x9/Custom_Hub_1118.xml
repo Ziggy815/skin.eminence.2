@@ -7,7 +7,7 @@
 
     <controls>
         <include content="Window_Hub">
-            <param name="categories" value="skinshortcuts-group-x1118" />
+            <param name="categories" value="skinshortcuts-x1118" />
         </include>
     </controls>
 </window>

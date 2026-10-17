@@ -40,7 +40,7 @@
                         <top>0</top>
                         <height>100%</height>
                         <label>$INFO[ListItem.Label]</label>
-                        <visible>String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>String.IsEqual(Window.Property(menuname),powermenu)</visible>
                     </control>
                     <control type="label">
                         <left>90</left>
@@ -48,7 +48,7 @@
                         <top>0</top>
                         <height>100%</height>
                         <label>$INFO[ListItem.Label]</label>
-                        <visible>!String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>!String.IsEqual(Window.Property(menuname),powermenu)</visible>
                     </control>
                     <control type="image">
                         <left>10</left>
@@ -57,7 +57,7 @@
                         <height>100%</height>
                         <align>right</align>
                         <aspectratio align="left">keep</aspectratio>
-                        <visible>!String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>!String.IsEqual(Window.Property(menuname),powermenu)</visible>
                         <texture colordiffuse="ListLabel">$INFO[ListItem.Icon]</texture>
                     </control>
                 </itemlayout>
@@ -75,7 +75,7 @@
                         <height>100%</height>
                         <label>$INFO[ListItem.Label]</label>
                         <textcolor>Selected</textcolor>
-                        <visible>String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>String.IsEqual(Window.Property(menuname),powermenu)</visible>
                     </control>
                     <control type="label">
                         <left>90</left>
@@ -84,7 +84,7 @@
                         <height>100%</height>
                         <label>$INFO[ListItem.Label]</label>
                         <textcolor>Selected</textcolor>
-                        <visible>!String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>!String.IsEqual(Window.Property(menuname),powermenu)</visible>
                     </control>
                     <control type="image">
                         <left>10</left>
@@ -94,7 +94,7 @@
                         <align>right</align>
                         <aspectratio align="left">keep</aspectratio>
                         <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
-                        <visible>!String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                        <visible>!String.IsEqual(Window.Property(menuname),powermenu)</visible>
                     </control>
                 </focusedlayout>
             </control>
@@ -126,7 +126,7 @@
                 <control type="button" id="307" description="Custom">
                     <width>100%</width>
                     <label>31186</label>
-                    <label2>$INFO[Container(211).ListItem.Property(path)]</label2>
+                    <label2>$INFO[Container(211).ListItem.Property(action)]</label2>
                     <include>Defs_OptionButton</include>
                 </control>
 
@@ -142,15 +142,15 @@
                     <label>31075</label>
                     <label2>$INFO[Container(211).ListItem.Icon]</label2>
                     <include>Defs_OptionButton</include>
-                    <visible>!String.IsEqual(Window.Property(groupname),powermenu)</visible>
+                    <visible>!String.IsEqual(Window.Property(menuname),powermenu)</visible>
                 </control>
 
-                <control type="button" id="312" description="Widget">
+                <control type="button" id="309" description="Widget">
                     <width>100%</width>
                     <label>$LOCALIZE[31250]</label>
                     <label2>$VAR[Label_ShortcutsWidget]</label2>
                     <include>Defs_OptionButton</include>
-                    <!-- <visible>!String.Contains(Window.Property(groupname),x11)</visible> -->
+                    <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
 
                 <control type="radiobutton" id="9702" description="PosterWidget">
@@ -158,13 +158,8 @@
                     <width>100%</width>
                     <radioposx>985</radioposx>
                     <selected>!String.IsEmpty(Container(211).ListItem.Property(PosterWidget))</selected>
-                    <onclick>SetProperty(customProperty,PosterWidget)</onclick>
-                    <onclick condition="String.IsEmpty(Container(211).ListItem.Property(PosterWidget))">SetProperty(customValue,true)</onclick>
-                    <onclick condition="!String.IsEmpty(Container(211).ListItem.Property(PosterWidget))">ClearProperty(customValue)</onclick>
-                    <onclick>SendClick(404)</onclick>
                     <include>Defs_OptionButton</include>
-                    <visible>String.IsEqual(Skin.String(home.widgetposters),$LOCALIZE[31166])</visible>
-                    <!-- <visible>!String.IsEmpty(Container(211).ListItem.Property(widget))</visible> -->
+                    <visible>String.IsEqual(Skin.String(home.widgetposters),$LOCALIZE[31166]) + String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
 
                 <include content="Defs_Shortcuts_SetHub">
@@ -278,15 +273,15 @@
                 <control type="button" id="405" description="Set Submenu">
                     <width>100%</width>
                     <label>31074</label>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(disableSubmenus))</visible>
                     <include>Defs_OptionButton</include>
                 </control>
 
                 <control type="button" id="310" description="Background">
                     <width>100%</width>
                     <label>31187</label>
-                    <label2>$INFO[Container(211).ListItem.Property(background)]</label2>
-                    <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
+                    <label2>$INFO[Container(211).ListItem.Property(backgroundLabel)]</label2>
+                    <visible>String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(disableBackgrounds))</visible>
                     <include>Defs_OptionButton</include>
                 </control>
 
@@ -295,22 +290,25 @@
                     <width>100%</width>
                     <label>31128</label>
                     <label2>$INFO[Container(211).ListItem.Property(tilecolor)]</label2>
-                    <onclick>SetFocus(9000)</onclick>
                     <include>Defs_OptionButton</include>
-                    <visible>Skin.HasSetting(home.tilecolor)</visible>
+                    <visible>Skin.HasSetting(home.tilecolor) + String.IsEqual(Window.Property(menuname),mainmenu)</visible>
                 </control>
 
-                <!-- <control type="button" id="301" description="Add">
+                <control type="button" id="311" description="Restore Deleted Item">
                     <width>100%</width>
                     <include>Defs_OptionButton</include>
-                </control> -->
-                <!-- <control type="button" id="302" description="Delete">
-                    <width>100%</width>
-                    <include>Defs_OptionButton</include>
-                </control> -->
+                    <visible>!String.IsEqual(Window.Property(skinshortcuts-hasdeleted),False) + !String.IsEmpty(Window.Property(skinshortcuts-hasdeleted))</visible>
+                </control>
 
-                <control type="button" id="308" description="Reset">
+                <control type="button" id="312" description="Reset Item">
                     <width>100%</width>
+                    <include>Defs_OptionButton</include>
+                </control>
+
+                <control type="button" id="314" description="Reset Menu">
+                    <width>100%</width>
+                    <label>$LOCALIZE[31170]</label>
+                    <onclick>RunScript(script.skinshortcuts,type=reset,menu=$INFO[Window.Property(menuname)])</onclick>
                     <include>Defs_OptionButton</include>
                 </control>
             </control>
@@ -369,23 +367,6 @@
                     <texturefocus colordiffuse="Selected" flipy="false">common/spin-down.png</texturefocus>
                 </control>
 
-            </control>
-        </control>
-
-        <control type="button" id="404"><visible allowhiddenfocus="true">false</visible><width>1</width><height>1</height></control>
-
-
-        <control type="group">
-            <visible>Control.HasFocus(9000)</visible>
-            <include>GlobalOverlay</include>
-            <control type="group">
-                <include content="Colors_Dialog">
-                    <visible allowhiddenfocus="true">Control.HasFocus(9000)</visible>
-                    <onclick>SetProperty(customProperty,tilecolor)</onclick>
-                    <onclick>SetProperty(customValue,$INFO[Container(9000).ListItem.Label])</onclick>
-                    <onclick>SendClick(404)</onclick>
-                    <onclick>SetFocus(9701)</onclick>
-                </include>
             </control>
         </control>
     </controls>
