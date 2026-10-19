@@ -33,7 +33,6 @@ The skin automatically utilizes the following addons when installed:
   * `script.image.resource.select`
   * `resource.images.weathericons.white`
 * **Supported / Optional:**
-  * `plugin.video.themoviedb.helper` (The Movie Database Helper)
   * `plugin.program.autocompletion`
 
 ---

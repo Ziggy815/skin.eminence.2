@@ -29,11 +29,9 @@
     </variable>
     <variable name="Image_MusicVisualisation">
         <value condition="Skin.HasSetting(ArtistSlideShow.Enabled) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.Player.Fanart))">$INFO[Window(Home).Property(TMDbHelper.Player.Fanart)]</value>
         <value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
     </variable>
     <variable name="Image_Poster">
-        <value condition="Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window.Property(list)) + !Container(9500).IsUpdating">$INFO[Container(9500).ListItem.Icon]</value>
         <value condition="Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Control.GetLabel(5),$LOCALIZE[207])">$INFO[Container(50).ListItem.Icon]</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + Container.Content(genres) + System.HasAddon(resource.images.moviegenreicons.transparent)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.transparent/,.png]</value>
         <value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
@@ -54,12 +52,10 @@
         <value condition="Skin.HasSetting(artwork.landscape) + !String.IsEmpty(ListItem.Art(tvshow.landscape))">$INFO[ListItem.Art(tvshow.landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + !Control.IsVisible(58) + !Control.IsVisible(553) + !Control.IsVisible(56)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
     <variable name="Image_PVRThumb">
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
         <value condition="!String.IsEmpty(Skin.String(background.fallback))">$INFO[Skin.String(background.fallback)]</value>
         <value>special://skin/extras/backgrounds/home.jpg</value>
     </variable>
@@ -139,10 +135,8 @@
 
         <value condition="Skin.HasSetting(background.hidefanart) + String.IsEmpty(Skin.String(background.fallback))">common/black.png</value>
         <value condition="Skin.HasSetting(background.hidefanart) + !String.IsEmpty(Skin.String(background.fallback))">$INFO[Skin.String(background.fallback)]</value>
-        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart)) + !Skin.HasSetting(global.fanart)">$INFO[Container(9500).ListItem.Art(fanart)]</value>
 
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + !Skin.HasSetting(global.fanart)">$INFO[ListItem.Art(fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + !Skin.HasSetting(global.fanart)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
 
         <value condition="!String.IsEmpty(Skin.String(background.fallback))">$INFO[Skin.String(background.fallback)]</value>
         

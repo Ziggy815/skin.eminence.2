@@ -38,9 +38,6 @@
             <widget name="MovieSets" label="$LOCALIZE[20434]" type="sets" target="videos" icon="special://skin/extras/icons/sets.png">
                 <path>videodb://movies/sets/</path>
             </widget>
-            <widget name="SimilarMovies" label="$LOCALIZE[31124]" type="movies" target="videos" icon="special://skin/extras/icons/film.png" visible="System.HasAddon(plugin.video.themoviedb.helper)">
-                <path>plugin://plugin.video.themoviedb.helper/?info=trakt_becauseyouwatched&amp;tmdb_type=movie</path>
-            </widget>
         </group>
 
         <group name="skin-tvshows" label="$LOCALIZE[20343]" icon="special://skin/extras/icons/tv.png">
@@ -85,9 +82,6 @@
             </widget>
             <widget name="TopRatedEpisodes" label="$LOCALIZE[31263]" type="episodes" target="videos" icon="special://skin/extras/icons/top100.png">
                 <path>special://skin/extras/playlists/TopRatedEpisodes.xsp</path>
-            </widget>
-            <widget name="NextAired" label="$LOCALIZE[31119]" type="episodes" target="videos" icon="special://skin/extras/icons/timer.png" visible="System.HasAddon(plugin.video.themoviedb.helper)">
-                <path>plugin://plugin.video.themoviedb.helper/?info=library_nextaired&amp;tmdb_type=episode</path>
             </widget>
         </group>
 

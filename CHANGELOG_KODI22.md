@@ -107,29 +107,24 @@ Dieser Changelog dokumentiert alle Prüfungen, Fehlerbehebungen und Erweiterunge
 
 ---
 
-## 5. `plugin.video.themoviedb.helper` v5.4.16 Hybrid-Umbau & Kontextmenü-Integration
+## 5. Vollständige Entfernung von `plugin.video.themoviedb.helper` (TMDbHelper)
 
+- **Vollständige Entkopplung & native Kodi-Performance:**
+  - Alle Abhängigkeiten zu `plugin.video.themoviedb.helper` wurden restlos aus dem Skin entfernt, um maximale Stabilität und Performance auf LibreELEC / Embedded-Systemen zu gewährleisten.
 - **`addon.xml`:**
-  - Abhängigkeit auf `<import addon="plugin.video.themoviedb.helper" version="5.4.16" optional="true" />` aktualisiert (Skin läuft nativ auch ohne TMDbHelper und ist 100% kompatibel mit v5.4.16+).
-- **Kontextmenü-Integration (`16x9/DialogContextMenu.xml`):**
-  - Zwei neue Einträge im Kontextmenü (`grouplist id="996"`) für Filme, Serien, Staffeln, Episoden, Schauspieler und Regisseure ergänzt (sichtbar, sobald `plugin.video.themoviedb.helper` installiert ist):
-    - **`TMDb Helper - Informationen` (`id="997"`)**: Startet gezielt den erweiterten TMDbHelper-Infodialog (`call_auto=1190`) über `add_tmdb` (falls TMDb-ID in der Bibliothek vorhanden) bzw. `add_query` mit `tmdb_type=movie|tv|person`.
-    - **`TMDb Helper - Optionen` (`id="998"`)**: Öffnet das TMDbHelper-Listen-/Aktionsmenü (`RunScript(plugin.video.themoviedb.helper,related_lists,tmdb_type=...)`) für Empfehlungen, Ähnliche Titel, Besetzung, Crew, Poster/Fanart, Trakt-Listen usw.
-- **Video-OSD Info-Button (`16x9/Includes_Window.xml`):**
-  - Veraltete und in TMDbHelper v5.4+ fehlerhafte `add_path=videodb://.../?xsp=...`-Aufrufe in `Window_OSD_Right_Video` (Button `id="4"`) durch Kodis schnellen nativen Vollbild-Infodialog `ActivateWindow(fullscreeninfo)` (`DialogFullScreenInfo.xml`) ersetzt.
-- **Video-Infodialog (`16x9/DialogVideoInfo.xml`) & `16x9/Includes_Defs.xml`:**
-  - Veraltete Parameter `type=person` / `type=movie` in `DialogVideoInfo.xml` und `Defs_TMDBH_List_Content` (`16x9/Includes_Defs.xml`) auf die neue v5-Syntax `tmdb_type=person` umgestellt; fehlerhaftes `type=movie` beim `add_path`-Aufruf für `Container(9500)` entfernt.
-  - Fallback auf Kodis native Darsteller-Suche (`SendClick(2003,50)`) eingebaut, falls `plugin.video.themoviedb.helper` nicht installiert ist.
-  - Unterstützung für die neuen v5-Personen-Properties (`ListItem.Property(item.tmdb_type)` und `ListItem.Property(tmdb_type)`) zusätzlich zu `item.type` ergänzt.
-  - Zusätzlichen Button **`TMDb Helper` (`id="9006"`)** in der Button-Leiste (`id="9000"`) von `DialogVideoInfo.xml` ergänzt, um direkt aus den Filminfos heraus auf `related_lists` zuzugreifen.
-- **Native Kodi-Ratings & Tippfehler-Korrekturen (`TMDBbHelper` / `ListITem`):**
-  - Alle Tippfehler `TMDBbHelper` (mit doppeltem `b`) und `ListITem` (mit großem `T`) in `16x9/Includes_Furniture.xml`, `16x9/Includes_Image.xml`, `16x9/Includes_Label.xml`, `16x9/Includes_Colors.xml`, `16x9/Home.xml` und `16x9/DialogVideoInfo.xml` behoben.
-  - Native Kodi-Datenbankwerte (`ListItem.Top250` inkl. Platzierungsnummer im Badge sowie `ListItem.Rating(metacritic)`) werden nun primär genutzt, mit `TMDbHelper.ListItem.*` als nahtlosem Fallback.
-- **Hintergrund-Service (`TMDbHelper.Service`) schaltbar gemacht (`16x9/Startup.xml`, `16x9/SkinSettings.xml`):**
-  - Zwanghafte Aktivierung `<onload>Skin.SetBool(TMDbHelper.Service)</onload>` bei jedem Start aus `16x9/Startup.xml` entfernt.
-  - Neuer Schalter **`TMDb Helper - Service Monitor` (`id="8605"`)** in `16x9/SkinSettings.xml` (unter Add-ons) hinzugefügt, sodass der Hintergrund-Monitor jederzeit ein- oder ausgeschaltet werden kann, während die Abrufe auf Abruf (Kontextmenü & Info-Dialog) immer bereitstehen.
-- **Widgets (`shortcuts/widgets.xml`):**
-  - Optionale TMDbHelper-Widgets (`SimilarMovies` und `NextAired`) auf die aktuellen v5.4-Routen (`info=trakt_becauseyouwatched&tmdb_type=movie` bzw. `info=library_nextaired&tmdb_type=episode`) aktualisiert.
+  - Das Add-on wurde komplett aus `<requires>` entfernt.
+- **Kontextmenü (`16x9/DialogContextMenu.xml`):**
+  - Veraltete TMDbHelper-Optionen (`id="997"` und `id="998"`) restlos entfernt.
+- **Video-Infodialog (`16x9/DialogVideoInfo.xml`):**
+  - Alle TMDb-spezifischen Buttons (Regisseur, InMovies, InTvShows, TMDb-Listen `id="9001"`–`id="9006"`) und die Container-Gruppe `id="9500"` entfernt.
+  - Klick auf Darsteller (`id="51"`) führt nun direkt Kodis native Suche in der lokalen Medienbibliothek aus (`SendClick(2003,50)`).
+- **Variablen & Includes (`Includes_Defs.xml`, `Includes_Furniture.xml`, `Includes_Image.xml`, `Includes_Label.xml`):**
+  - Entfernung von `Defs_TMDBH_List_Content` und `Defs_TMDBH_List_Label`.
+  - Entfernung aller `Window(Home).Property(TMDbHelper.*)`-Properties (Plot, Fanart, Top250, Awards, Rotten Tomatoes, Genre).
+  - Alle Badges (z.B. Top250) und Beschreibungen greifen nun direkt und blitzschnell auf Kodis native Metadaten zu.
+- **Einstellungen & Widgets (`16x9/SkinSettings.xml`, `shortcuts/widgets.xml`):**
+  - Addon-Eintrag und Service-Monitor aus den Skin-Einstellungen entfernt.
+  - TMDb-spezifische Widgets (`SimilarMovies`, `NextAired`) aus `shortcuts/widgets.xml` entfernt.
 
 ---
 
