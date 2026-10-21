@@ -101,6 +101,7 @@
         <param name="height" default="690" />
         <param name="orientation" default="vertical" />
         <param name="genres" default="false" />
+        <param name="include_name" default="Defs_Empty" />
         <definition>
             <control type="panel" id="$PARAM[id]">
                 <top>15</top>
@@ -445,6 +446,7 @@
 
     <include name="View_IconFanart">
         <param name="updownid" default="true" />
+        <param name="include_name" default="Defs_Empty" />
         <param name="width" default="headlinew" />
         <param name="posx" default="iconwidepanelpadw" />
         <param name="height" default="690" />

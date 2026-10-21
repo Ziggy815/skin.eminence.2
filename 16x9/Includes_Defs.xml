@@ -44,6 +44,7 @@
         <value condition="System.AddonIsEnabled(plugin.program.autocompletion) + !System.HasHiddenInput">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
     </variable>
 
+    <include name="Defs_Empty"><description>No-op default for include_name params</description></include>
     <include name="Defs_Store_Content"><content target="$PARAM[include_target]">$PARAM[include_content]</content></include>
     <include name="Defs_Store_MainMenu"><content><include>skinshortcuts-mainmenu</include></content></include>
 
