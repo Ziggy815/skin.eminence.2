@@ -466,7 +466,7 @@
                 <onclick condition="String.StartsWith(Container(9002).ListItem.Property(action),ActivateWindow) + !String.Contains(Container(9002).ListItem.Property(action),MyFavourites) + !String.Contains(Container(9002).ListItem.Property(action),DialogButtonMenu) + !String.Contains(Container(9002).ListItem.Property(action),shutdownmenu) + !String.Contains(Container(9002).ListItem.Property(action),favourites)">SetProperty(FO9001,2,home)</onclick>
                 <onclick condition="!String.IsEmpty(Container(9002).ListItem.Property(action))">$INFO[Container(9002).ListItem.Property(action)]</onclick>
                 <onclick condition="String.IsEmpty(Container(9002).ListItem.Property(action))">$INFO[Container(9002).ListItem.Property(path)]</onclick>
-                <onclick>SetFocus(9000)</onclick>
+                <onclick condition="!String.StartsWith(Container(9002).ListItem.Property(action),ActivateWindow) + !String.StartsWith(Container(9002).ListItem.Property(path),ActivateWindow)">SetFocus(9000)</onclick>
                 <itemlayout width="374" height="69">
                     <control type="image">
                         <width>364</width>
