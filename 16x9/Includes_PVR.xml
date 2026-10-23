@@ -170,6 +170,31 @@
         </definition>
     </include>
 
+    <include name="PVR_SmallList_Progress_Item">
+        <control type="progress">
+            <width>80</width>
+            <right>bigpad</right>
+            <centertop>60%</centertop>
+            <height>8</height>
+            <reveal>true</reveal>
+            <info>ListItem.Progress</info>
+            <lefttexture colordiffuse="5fededed">osd/progress-end.png</lefttexture>
+            <midtexture colordiffuse="5fededed">osd/progress-end.png</midtexture>
+        </control>
+    </include>
+    <include name="PVR_SmallList_Progress_Focus">
+        <control type="progress">
+            <width>80</width>
+            <right>bigpad</right>
+            <centertop>60%</centertop>
+            <height>8</height>
+            <reveal>true</reveal>
+            <info>ListItem.Progress</info>
+            <lefttexture colordiffuse="Selected">osd/progress-end.png</lefttexture>
+            <midtexture colordiffuse="Selected">osd/progress-end.png</midtexture>
+        </control>
+    </include>
+
     <!-- PVR Small List -->
     <include name="PVR_SmallList">
         <param name="id" default="50" />
