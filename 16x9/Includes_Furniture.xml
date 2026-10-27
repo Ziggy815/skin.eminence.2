@@ -259,6 +259,7 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.showflags)</visible>
+            <visible>!Window.IsVisible(TVChannels) + !Window.IsVisible(RadioChannels)</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
             <bottom>6</bottom>
@@ -513,79 +514,7 @@
             </control>
             
 
-            <!-- Duration -->
-            <control type="image">
-                <left>-12</left>
-                <top>2</top>
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <texture colordiffuse="LineLabel">indicator/clock.png</texture>
-                <visible>!String.IsEmpty(ListItem.Duration)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-24</left>
-                <height>64</height>
-                <width>88</width>
-                <label>$INFO[ListItem.Duration(mins),, $LOCALIZE[31117]]</label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.Duration)</visible>
-                <visible>!String.Contains(ListItem.Duration,:)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-24</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.Duration]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.Duration)</visible>
-                <visible>String.Contains(ListItem.Duration,:)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
 
-            <!-- Year / Premiered -->
-            <control type="image">
-                <left>-12</left>
-                <top>1</top>
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <texture colordiffuse="LineLabel">indicator/calendar.png</texture>
-                <visible>[!String.IsEmpty(ListItem.Year) + !container.Content(episodes)] | [!String.IsEmpty(ListItem.Premiered) + Container.Content(episodes)]</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-20</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.Year]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.Year) + !container.Content(episodes)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-20</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.Premiered]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.Premiered) + Container.Content(episodes)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
 
             <!-- Rating -->
             <control type="image">
@@ -746,6 +675,18 @@
         <value condition="String.IsEqual(Container.FolderPath,videodb://movies/titles/)">$LOCALIZE[20342]</value>
         <value condition="Container.Content(episodes) + !String.IsEmpty(ListItem.TvShowTitle) + String.Contains(Container.FolderPath,videodb://tvshows/titles/)">[CAPITALIZE]$INFO[ListItem.TvShowTitle][/CAPITALIZE]</value>
         <value condition="!String.IsEmpty(Container.PluginCategory)">[CAPITALIZE]$INFO[Container.PluginCategory][/CAPITALIZE]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + !String.IsEmpty(ListItem.ChannelGroup) + !String.IsEmpty(ListItem.PVRClientName)">$INFO[ListItem.ChannelGroup] @$INFO[ListItem.PVRClientName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + !String.IsEmpty(ListItem.ChannelGroup) + !String.IsEmpty(PVR.BackendName)">$INFO[ListItem.ChannelGroup] @$INFO[PVR.BackendName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + !String.IsEmpty(ListItem.ChannelGroup)">$INFO[ListItem.ChannelGroup]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,Alle Sender) + !String.IsEmpty(ListItem.PVRClientName)">Alle Sender @$INFO[ListItem.PVRClientName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,Alle Sender) + !String.IsEmpty(PVR.BackendName)">Alle Sender @$INFO[PVR.BackendName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,Alle Sender)">Alle Sender</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,All channels) + !String.IsEmpty(ListItem.PVRClientName)">All Channels @$INFO[ListItem.PVRClientName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,All channels) + !String.IsEmpty(PVR.BackendName)">All Channels @$INFO[PVR.BackendName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.StartsWith(Container.FolderName,All channels)">All Channels</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.Contains(Container.FolderName,@) + !String.IsEmpty(ListItem.PVRClientName)">$LOCALIZE[19019] @$INFO[ListItem.PVRClientName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.Contains(Container.FolderName,@) + !String.IsEmpty(PVR.BackendName)">$LOCALIZE[19019] @$INFO[PVR.BackendName]</value>
+        <value condition="[Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(MyPVRChannels.xml)] + String.Contains(Container.FolderName,@)">$LOCALIZE[19019]</value>
         <value condition="!String.IsEmpty(Container.FolderName)">[CAPITALIZE]$INFO[Container.FolderName][/CAPITALIZE]</value>
         <value condition="Window.IsVisible(home) + String.IsEmpty(Skin.String(home.mainheadertext))">$LOCALIZE[31158]</value>
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Skin.String(home.mainheadertext))">$INFO[Skin.String(home.mainheadertext)]</value>

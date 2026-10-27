@@ -512,142 +512,286 @@
                 <width>100%</width>
                 <height>405</height>
                 <include>Object_Background</include>
-                <control type="label">
+                <control type="grouplist">
                     <top>8</top>
+                    <bottom>pad</bottom>
                     <left>pad</left>
                     <right>pad</right>
-                    <height>50</height>
-                    <font>Font-InfoBox-Title</font>
-                    <textcolor>$VAR[HighlightColor2]</textcolor>
-                    <label>$INFO[ListItem.Title]</label>
-                    <visible>!String.IsEmpty(ListItem.Title)</visible>
-                </control>
-                <control type="label">
-                    <top>62</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <height>30</height>
-                    <font>Font-ListInfo</font>
-                    <textcolor>MainLabel</textcolor>
-                    <label>$INFO[ListItem.OriginalTitle]</label>
-                    <visible>!String.IsEmpty(ListItem.OriginalTitle)</visible>
-                </control>
-                <control type="label">
-                    <top>94</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <height>30</height>
-                    <font>Font-ListInfo-Small-Bold</font>
-                    <textcolor>SubLabel</textcolor>
-                    <label>$INFO[ListItem.Season,Season: ,]$INFO[ListItem.Episode, · Episode: ,]</label>
-                    <visible>!String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)</visible>
-                </control>
-                <control type="group">
-                    <top>128</top>
-                    <height>60</height>
-                    <visible>!String.IsEmpty(ListItem.StartTime)</visible>
+                    <itemgap>6</itemgap>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <!-- Main Show Title -->
                     <control type="label">
-                        <top>0</top>
-                        <left>pad</left>
-                        <width>330</width>
-                        <height>30</height>
-                        <font>Font-ListInfo-Small</font>
-                        <textcolor>MainLabel</textcolor>
-                        <label>$INFO[ListItem.StartTime]</label>
+                        <left>0</left>
+                        <right>0</right>
+                        <height>44</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <scroll>true</scroll>
+                        <label>$VAR[Label_IsRecording]$INFO[ListItem.Title]</label>
+                        <visible>!String.IsEmpty(ListItem.Title)</visible>
                     </control>
                     <control type="label">
-                        <top>0</top>
-                        <right>pad</right>
-                        <width>330</width>
-                        <height>30</height>
-                        <align>right</align>
-                        <font>Font-ListInfo-Small</font>
+                        <left>0</left>
+                        <right>0</right>
+                        <height>44</height>
+                        <font>Font-InfoBox-Title</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <scroll>true</scroll>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.IsEmpty(ListItem.Title) + !String.IsEmpty(ListItem.Label)</visible>
+                    </control>
+                    <!-- Episode Title (Prioritize EpisodeName, then OriginalTitle if not equal to Title) -->
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo</font>
                         <textcolor>MainLabel</textcolor>
-                        <label>$INFO[ListItem.EndTime]</label>
+                        <scroll>true</scroll>
+                        <label>$INFO[ListItem.EpisodeName]$INFO[ListItem.Year, (,)]$INFO[ListItem.Duration(mins), · , min]</label>
+                        <visible>!String.IsEmpty(ListItem.EpisodeName)</visible>
                     </control>
-                    <control type="progress">
-                        <top>40</top>
-                        <left>pad</left>
-                        <right>pad</right>
-                        <height>8</height>
-                        <reveal>true</reveal>
-                        <info>ListItem.Progress</info>
-                        <texturebg colordiffuse="LineLabel">osd/progress-bg.png</texturebg>
-                        <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo</font>
+                        <textcolor>MainLabel</textcolor>
+                        <scroll>true</scroll>
+                        <label>$INFO[ListItem.OriginalTitle]$INFO[ListItem.Year, (,)]$INFO[ListItem.Duration(mins), · , min]</label>
+                        <visible>String.IsEmpty(ListItem.EpisodeName) + !String.IsEmpty(ListItem.OriginalTitle) + !String.IsEqual(ListItem.OriginalTitle,ListItem.Title)</visible>
                     </control>
-                </control>
-                <control type="label">
-                    <top>202</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <height>30</height>
-                    <font>Font-ListInfo-Small-Bold</font>
-                    <textcolor>SubLabel</textcolor>
-                    <label>[UPPERCASE]$INFO[ListItem.Genre,, · ]$INFO[ListItem.Country,, · ]$INFO[ListItem.Year,(,)]$INFO[ListItem.MPAA, · ,][/UPPERCASE]</label>
-                </control>
-                <control type="textbox">
-                    <top>236</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <height>158</height>
-                    <font>Font-ListInfo-Small</font>
-                    <align>left</align>
-                    <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-                    <label>$VAR[Label_Plot]</label>
-                </control>
-            </control>
-            <!-- Next programme -->
-            <control type="group">
-                <width>100%</width>
-                <top>425</top>
-                <include>Object_Background</include>
-                <visible>!String.IsEmpty(ListItem.NextTitle)</visible>
-                <control type="label">
-                    <top>pad</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <height>30</height>
-                    <font>Font-ListInfo-Small-Bold</font>
-                    <textcolor>SubLabel</textcolor>
-                    <label>[COLOR=$VAR[HighlightColor2]]$LOCALIZE[31003][/COLOR] $INFO[ListItem.NextStartTime]</label>
-                </control>
-                <!-- Upcoming events list; channel EPG path per user spec -->
-                <control type="list">
-                    <top>44</top>
-                    <left>pad</left>
-                    <right>pad</right>
-                    <width>remaining(pad)</width>
-                    <height>250</height>
-                    <itemlayout width="remaining(pad)" height="50">
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo</font>
+                        <textcolor>MainLabel</textcolor>
+                        <scroll>true</scroll>
+                        <label>$INFO[ListItem.Year,(,)][COLOR=SubLabel]$INFO[ListItem.Duration(mins), · , min][/COLOR]</label>
+                        <visible>String.IsEmpty(ListItem.EpisodeName) + [String.IsEmpty(ListItem.OriginalTitle) | String.IsEqual(ListItem.OriginalTitle,ListItem.Title)] + !String.IsEmpty(ListItem.Year)</visible>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo</font>
+                        <textcolor>SubLabel</textcolor>
+                        <scroll>true</scroll>
+                        <label>$INFO[ListItem.Duration(mins),, min]</label>
+                        <visible>String.IsEmpty(ListItem.EpisodeName) + [String.IsEmpty(ListItem.OriginalTitle) | String.IsEqual(ListItem.OriginalTitle,ListItem.Title)] + String.IsEmpty(ListItem.Year) + !String.IsEmpty(ListItem.Duration) + !String.IsEqual(ListItem.Duration,0)</visible>
+                    </control>
+                    <!-- Season / Episode (Localized: Staffel X, Episode/Folge Y) -->
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo-Small-Bold</font>
+                        <textcolor>SubLabel</textcolor>
+                        <label>$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode, · $LOCALIZE[20359] ,]</label>
+                        <visible>!String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)</visible>
+                        <visible>!String.Contains(ListItem.Genre,Film) + !String.Contains(ListItem.Genre,Movie)</visible>
+                        <visible>!String.IsEmpty(ListItem.EpisodeName) | Integer.IsGreater(ListItem.Season,1) | Integer.IsGreater(ListItem.Episode,1)</visible>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo-Small-Bold</font>
+                        <textcolor>SubLabel</textcolor>
+                        <label>$INFO[ListItem.Season,$LOCALIZE[20373] ,]</label>
+                        <visible>!String.IsEmpty(ListItem.Season) + String.IsEmpty(ListItem.Episode)</visible>
+                        <visible>!String.Contains(ListItem.Genre,Film) + !String.Contains(ListItem.Genre,Movie)</visible>
+                        <visible>!String.IsEmpty(ListItem.EpisodeName) | Integer.IsGreater(ListItem.Season,1)</visible>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo-Small-Bold</font>
+                        <textcolor>SubLabel</textcolor>
+                        <label>$INFO[ListItem.Episode,$LOCALIZE[20359] ,]</label>
+                        <visible>String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)</visible>
+                        <visible>!String.Contains(ListItem.Genre,Film) + !String.Contains(ListItem.Genre,Movie)</visible>
+                        <visible>!String.IsEmpty(ListItem.EpisodeName) | Integer.IsGreater(ListItem.Episode,1)</visible>
+                    </control>
+                    <!-- Timeline + Progress bar: only in Live TV / Radio Channels view -->
+                    <control type="group">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>48</height>
+                        <visible>!String.IsEmpty(ListItem.StartTime) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels)]</visible>
                         <control type="label">
                             <top>0</top>
                             <left>0</left>
-                            <width>90</width>
+                            <width>330</width>
                             <height>28</height>
-                            <font>Font-ListInfo-Small-Bold</font>
-                            <textcolor>MainFocusColor</textcolor>
+                            <font>Font-ListInfo-Small</font>
+                            <textcolor>MainLabel</textcolor>
                             <label>$INFO[ListItem.StartTime]</label>
                         </control>
                         <control type="label">
                             <top>0</top>
-                            <left>90</left>
-                            <width>remaining(90)</width>
+                            <right>0</right>
+                            <width>330</width>
                             <height>28</height>
+                            <align>right</align>
+                            <font>Font-ListInfo-Small</font>
+                            <textcolor>MainLabel</textcolor>
+                            <label>$INFO[ListItem.EndTime]</label>
+                        </control>
+                        <control type="progress">
+                            <top>34</top>
+                            <left>0</left>
+                            <right>0</right>
+                            <height>8</height>
+                            <reveal>true</reveal>
+                            <info>ListItem.Progress</info>
+                            <texturebg colordiffuse="LineLabel">osd/progress-bg.png</texturebg>
+                            <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
+                        </control>
+                    </control>
+                    <!-- Time only (no progress bar) in Recordings / Timers / Search -->
+                    <control type="label">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>28</height>
+                        <font>Font-ListInfo-Small</font>
+                        <textcolor>MainLabel</textcolor>
+                        <label>$INFO[ListItem.Date]$INFO[ListItem.StartTime, · ,]$INFO[ListItem.EndTime, - ,]</label>
+                        <visible>[!String.IsEmpty(ListItem.StartTime) | !String.IsEmpty(ListItem.Date)] + !Window.IsVisible(TVChannels) + !Window.IsVisible(RadioChannels)</visible>
+                    </control>
+                    <control type="textbox">
+                        <left>0</left>
+                        <right>0</right>
+                        <height>230</height>
+                        <font>Font-ListInfo-Small</font>
+                        <align>left</align>
+                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+                        <label>$VAR[Label_Plot]</label>
+                    </control>
+                </control>
+            </control>
+            <!-- Next programmes (3-5 upcoming events with time) -->
+            <control type="group">
+                <width>100%</width>
+                <top>415</top>
+                <bottom>0</bottom>
+                <include>Object_Background</include>
+                <visible>!String.IsEmpty(ListItem.NextTitle) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels)]</visible>
+                <control type="label">
+                    <top>8</top>
+                    <left>pad</left>
+                    <right>pad</right>
+                    <height>28</height>
+                    <font>Font-ListInfo-Small-Bold</font>
+                    <textcolor>$VAR[HighlightColor2]</textcolor>
+                    <label>[UPPERCASE]$LOCALIZE[31003][/UPPERCASE]</label>
+                </control>
+                <!-- Upcoming events list populated via skin helper plugin (4 broadcasts) -->
+                <control type="list" id="5050">
+                    <top>38</top>
+                    <left>pad</left>
+                    <right>pad</right>
+                    <bottom>pad</bottom>
+                    <orientation>vertical</orientation>
+                    <itemlayout width="700" height="64">
+                        <control type="label">
+                            <top>0</top>
+                            <left>0</left>
+                            <width>105</width>
+                            <height>34</height>
+                            <font>Font-ListInfo-Bold</font>
+                            <textcolor>$VAR[HighlightColor2]</textcolor>
+                            <label>$INFO[ListItem.Property(StartTime)]</label>
+                        </control>
+                        <control type="label">
+                            <top>0</top>
+                            <left>105</left>
+                            <right>0</right>
+                            <height>34</height>
                             <font>Font-ListInfo</font>
                             <textcolor>MainLabel</textcolor>
+                            <scroll>true</scroll>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
-                            <top>25</top>
-                            <left>90</left>
-                            <width>remaining(90)</width>
-                            <height>24</height>
+                            <top>33</top>
+                            <left>105</left>
+                            <right>0</right>
+                            <height>26</height>
                             <font>Font-ListInfo-Small</font>
                             <textcolor>SubLabel</textcolor>
-                            <label>[UPPERCASE]$INFO[ListItem.Genre,, · ]$INFO[ListItem.EndTime, · ][/UPPERCASE]</label>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubLine)][/UPPERCASE]</label>
                         </control>
                     </itemlayout>
-                    <content limit="5">pvr://guide/tv/$INFO[ListItem.ChannelNumberLabel]/</content>
+                    <focusedlayout width="700" height="64">
+                        <control type="label">
+                            <top>0</top>
+                            <left>0</left>
+                            <width>105</width>
+                            <height>34</height>
+                            <font>Font-ListInfo-Bold</font>
+                            <textcolor>$VAR[HighlightColor2]</textcolor>
+                            <label>$INFO[ListItem.Property(StartTime)]</label>
+                        </control>
+                        <control type="label">
+                            <top>0</top>
+                            <left>105</left>
+                            <right>0</right>
+                            <height>34</height>
+                            <font>Font-ListInfo</font>
+                            <textcolor>MainLabel</textcolor>
+                            <scroll>true</scroll>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <top>33</top>
+                            <left>105</left>
+                            <right>0</right>
+                            <height>26</height>
+                            <font>Font-ListInfo-Small</font>
+                            <textcolor>SubLabel</textcolor>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubLine)][/UPPERCASE]</label>
+                        </control>
+                    </focusedlayout>
+                    <content limit="4">plugin://skin.eminence.2/?action=upcoming&amp;path=$INFO[ListItem.FileNameAndPath]&amp;channelnumber=$INFO[ListItem.ChannelNumberLabel]&amp;limit=4</content>
+                </control>
+                <!-- Instant native fallback while plugin list loads -->
+                <control type="group">
+                    <top>38</top>
+                    <left>pad</left>
+                    <right>pad</right>
+                    <height>64</height>
+                    <visible>!Integer.IsGreater(Container(5050).NumItems,0)</visible>
+                    <control type="label">
+                        <top>0</top>
+                        <left>0</left>
+                        <width>105</width>
+                        <height>34</height>
+                        <font>Font-ListInfo-Bold</font>
+                        <textcolor>$VAR[HighlightColor2]</textcolor>
+                        <label>$INFO[ListItem.NextStartTime]</label>
+                    </control>
+                    <control type="label">
+                        <top>0</top>
+                        <left>105</left>
+                        <right>0</right>
+                        <height>34</height>
+                        <font>Font-ListInfo</font>
+                        <textcolor>MainLabel</textcolor>
+                        <label>$INFO[ListItem.NextTitle]</label>
+                    </control>
+                    <control type="label">
+                        <top>33</top>
+                        <left>105</left>
+                        <right>0</right>
+                        <height>26</height>
+                        <font>Font-ListInfo-Small</font>
+                        <textcolor>SubLabel</textcolor>
+                        <label>[UPPERCASE]$INFO[ListItem.NextGenre,, · ]$INFO[ListItem.NextEndTime][/UPPERCASE]</label>
+                    </control>
                 </control>
             </control>
         </control>
