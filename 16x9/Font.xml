@@ -7,139 +7,139 @@
         <font>
             <name>Font-Header</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>75</size>
+            <size>76</size>
         </font>
         <font>
             <name>Font-Sublabel</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>32</size>
+            <size>33</size>
         </font>
         <font>
             <name>Font-HomeMenu</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>28</size>
+            <size>29</size>
         </font>
         <font>
             <name>Font-Button</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>32</size>
+            <size>33</size>
         </font>
         <font>
             <name>Font-ListInfo-Bold</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>30</size>
+            <size>31</size>
             <linespacing>1.08</linespacing>
         </font>
         <font>
             <name>Font-ListInfo</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>30</size>
+            <size>31</size>
             <linespacing>1.08</linespacing>
         </font>
         <font>
             <name>Font-ListInfo-Big</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>38</size>
+            <size>39</size>
             <linespacing>1.08</linespacing>
         </font>
         <font>
             <name>Font-ListInfo-Small</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>27</size>
+            <size>28</size>
         </font>
         <font>
             <name>Font-LineLabel</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>18</size>
+            <size>19</size>
             <style>uppercase</style>
         </font>
         <font>
             <name>Font-LineLabel-Kbps</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>20</size>
+            <size>21</size>
         </font>
         <font>
             <name>Font-LineLabel-Bitrate</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>20</size>
+            <size>21</size>
         </font>
         <font>
             <name>Font-SettingsLevel</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>22</size>
+            <size>23</size>
         </font>
         <font>
             <name>Font-NumEpisodes</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>16</size>
+            <size>17</size>
         </font>
         <font>
             <name>Font-RSS</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>24</size>
+            <size>25</size>
         </font>
         <font>
             <name>Font-ListInfo-Small-Bold</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>27</size>
+            <size>28</size>
         </font>
         <font>
             <name>FontArial-ListInfo-Small-Bold</name>
             <filename>Arial.ttf</filename>
             <style>bold</style>
-            <size>25</size>
+            <size>26</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-OSD</name>
             <filename>Roboto-Regular.ttf</filename>
-            <size>25</size>
+            <size>26</size>
             <aspect>0.9</aspect>
         </font>
         <font>
             <name>Font-InfoBox-Title</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>36</size>
+            <size>37</size>
         </font>
         <font>
             <name>Font-WidgetInfoTitle</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>48</size>
+            <size>49</size>
         </font>
 
         <font>
             <name>Font-LoginLabel</name>
             <style>uppercase</style>
             <filename>Roboto-Black.ttf</filename>
-            <size>36</size>
+            <size>37</size>
         </font>
 
         <font>
             <name>Font-MusicVis-Title</name>
             <filename>Roboto-Black.ttf</filename>
-            <size>64</size>
+            <size>65</size>
         </font>
         <font>
             <name>Font-MusicVis-Info</name>
             <filename>Roboto-Bold.ttf</filename>
-            <size>42</size>
+            <size>43</size>
         </font>
 
         <!-- Music Vis -->
         <font>
             <name>Font-MusicVis-Biggest</name>
             <filename>Roboto-Light.ttf</filename>
-            <size>230</size>
+            <size>231</size>
         </font>
         <font>
             <name>Font-MusicVis-Bigger</name>
             <filename>Roboto-Light.ttf</filename>
-            <size>130</size>
+            <size>131</size>
         </font>
         <font>
             <name>Font-MusicVis-Big</name>
             <filename>Roboto-Light.ttf</filename>
-            <size>80</size>
+            <size>81</size>
         </font>
 
         <include>Defs_LyricSystemFonts</include>
@@ -153,34 +153,34 @@
         <font>
             <name>Font-Header</name>
             <filename>Arial.ttf</filename>
-            <size>73</size>
+            <size>74</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-Sublabel</name>
             <filename>Arial.ttf</filename>
-            <size>30</size>
+            <size>31</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-HomeMenu</name>
             <filename>Arial.ttf</filename>
-            <size>26</size>
+            <size>27</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-Button</name>
             <filename>Arial.ttf</filename>
-            <size>30</size>
+            <size>31</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-ListInfo-Bold</name>
             <filename>Arial.ttf</filename>
-            <size>28</size>
+            <size>29</size>
             <linespacing>1.11</linespacing>
             <aspect>0.94</aspect>
             <style>bold</style>
@@ -188,14 +188,14 @@
         <font>
             <name>Font-ListInfo</name>
             <filename>Arial.ttf</filename>
-            <size>28</size>
+            <size>29</size>
             <linespacing>1.11</linespacing>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-ListInfo-Big</name>
             <filename>Arial.ttf</filename>
-            <size>36</size>
+            <size>37</size>
             <linespacing>1.11</linespacing>
             <aspect>0.94</aspect>
             <style>bold</style>
@@ -203,40 +203,40 @@
         <font>
             <name>Font-ListInfo-Small</name>
             <filename>Arial.ttf</filename>
-            <size>25</size>
+            <size>26</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-LineLabel</name>
             <filename>Arial.ttf</filename>
-            <size>16</size>
+            <size>17</size>
             <style>uppercase bold</style>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-SettingsLevel</name>
             <filename>Arial.ttf</filename>
-            <size>20</size>
+            <size>21</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-NumEpisodes</name>
             <filename>Arial.ttf</filename>
-            <size>14</size>
+            <size>15</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-RSS</name>
             <filename>Arial.ttf</filename>
-            <size>22</size>
+            <size>23</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-ListInfo-Small-Bold</name>
             <filename>Arial.ttf</filename>
-            <size>25</size>
+            <size>26</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
@@ -244,27 +244,27 @@
             <name>FontArial-ListInfo-Small-Bold</name>
             <filename>Arial.ttf</filename>
             <style>bold</style>
-            <size>25</size>
+            <size>26</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-OSD</name>
             <filename>Arial.ttf</filename>
-            <size>23</size>
+            <size>24</size>
             <aspect>0.84</aspect>
 
         </font>
         <font>
             <name>Font-InfoBox-Title</name>
             <filename>Arial.ttf</filename>
-            <size>34</size>
+            <size>35</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-WidgetInfoTitle</name>
             <filename>Arial.ttf</filename>
-            <size>46</size>
+            <size>47</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
@@ -273,21 +273,21 @@
             <name>Font-LoginLabel</name>
             <style>uppercase bold</style>
             <filename>Arial.ttf</filename>
-            <size>34</size>
+            <size>35</size>
             <aspect>0.94</aspect>
         </font>
 
         <font>
             <name>Font-MusicVis-Title</name>
             <filename>Arial.ttf</filename>
-            <size>62</size>
+            <size>63</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
         <font>
             <name>Font-MusicVis-Info</name>
             <filename>Arial.ttf</filename>
-            <size>40</size>
+            <size>41</size>
             <aspect>0.94</aspect>
             <style>bold</style>
         </font>
@@ -296,19 +296,19 @@
         <font>
             <name>Font-MusicVis-Biggest</name>
             <filename>Arial.ttf</filename>
-            <size>230</size>
+            <size>231</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-MusicVis-Bigger</name>
             <filename>Arial.ttf</filename>
-            <size>130</size>
+            <size>131</size>
             <aspect>0.94</aspect>
         </font>
         <font>
             <name>Font-MusicVis-Big</name>
             <filename>Arial.ttf</filename>
-            <size>80</size>
+            <size>81</size>
             <aspect>0.94</aspect>
         </font>
 
