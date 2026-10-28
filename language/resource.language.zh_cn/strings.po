@@ -909,10 +909,6 @@ msgctxt "#31217"
 msgid "Pixel format"
 msgstr "像素格式"
 
-msgctxt "#31218"
-msgid "Show additional info labels with media flags (e.g. ratings and year)"
-msgstr "和媒体标志同时显示附加信息标签（如评分和年份）"
-
 msgctxt "#31219"
 msgid "Miscellaneous"
 msgstr "杂项"

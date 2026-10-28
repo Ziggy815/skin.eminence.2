@@ -934,12 +934,6 @@ msgctxt "#31217"
 msgid "Pixel format"
 msgstr "Pixel formátum"
 
-msgctxt "#31218"
-msgid "Show additional info labels with media flags (e.g. ratings and year)"
-msgstr ""
-"További információs címkék megjelenítése média jelzőkkel (pl. értékelés és "
-"évszám)"
-
 msgctxt "#31219"
 msgid "Miscellaneous"
 msgstr "Vegyes"

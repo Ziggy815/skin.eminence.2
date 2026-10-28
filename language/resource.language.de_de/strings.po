@@ -894,10 +894,6 @@ msgctxt "#31217"
 msgid "Pixel format"
 msgstr "Pixelformat"
 
-msgctxt "#31218"
-msgid "Show additional info labels with media flags (e.g. ratings and year)"
-msgstr "Zeige zusätzlich Info Etiketten in Listen (z.B. Bewertung und Jahr)"
-
 msgctxt "#31219"
 msgid "Miscellaneous"
 msgstr "Sonstiges"

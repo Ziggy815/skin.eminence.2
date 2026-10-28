@@ -621,7 +621,7 @@
                         <left>0</left>
                         <right>0</right>
                         <height>48</height>
-                        <visible>!String.IsEmpty(ListItem.StartTime) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels)]</visible>
+                        <visible>!String.IsEmpty(ListItem.StartTime) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(DialogPVRChannelsOSD.xml)]</visible>
                         <control type="label">
                             <top>0</top>
                             <left>0</left>
@@ -660,13 +660,13 @@
                         <font>Font-ListInfo-Small</font>
                         <textcolor>MainLabel</textcolor>
                         <label>$INFO[ListItem.Date]$INFO[ListItem.StartTime, · ,]$INFO[ListItem.EndTime, - ,]</label>
-                        <visible>[!String.IsEmpty(ListItem.StartTime) | !String.IsEmpty(ListItem.Date)] + !Window.IsVisible(TVChannels) + !Window.IsVisible(RadioChannels)</visible>
+                        <visible>[!String.IsEmpty(ListItem.StartTime) | !String.IsEmpty(ListItem.Date)] + !Window.IsVisible(TVChannels) + !Window.IsVisible(RadioChannels) + !Window.IsVisible(DialogPVRChannelsOSD.xml)</visible>
                     </control>
                     <control type="textbox">
                         <left>0</left>
                         <right>0</right>
                         <height>230</height>
-                        <font>Font-ListInfo-Small</font>
+                        <font>Font-ListInfo</font>
                         <align>left</align>
                         <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
                         <label>$VAR[Label_Plot]</label>
@@ -679,7 +679,7 @@
                 <top>415</top>
                 <bottom>0</bottom>
                 <include>Object_Background</include>
-                <visible>!String.IsEmpty(ListItem.NextTitle) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels)]</visible>
+                <visible>!String.IsEmpty(ListItem.NextTitle) + [Window.IsVisible(TVChannels) | Window.IsVisible(RadioChannels) | Window.IsVisible(DialogPVRChannelsOSD.xml)]</visible>
                 <control type="label">
                     <top>8</top>
                     <left>pad</left>

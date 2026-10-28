@@ -157,7 +157,6 @@
                     <align>right</align>
                     <font>Font-ListInfo-Small-Bold</font>
                     <label>$VAR[Label_ExtraInfo_Icons]</label>
-                    <visible>!Skin.HasSetting(furniture.showflags) | !Skin.HasSetting(furniture.flags.extradetail)</visible>
                 </control>
             </control>
         </control>
@@ -278,21 +277,12 @@
                         <align>center</align>
                         <font>Font-ListInfo-Small-Bold</font>
                         <label>$VAR[Label_ExtraInfo_Icons]</label>
-                        <visible>!Skin.HasSetting(furniture.showflags) | !Skin.HasSetting(furniture.flags.extradetail)</visible>
                     </control>
                     <control type="textbox">
                         <height>auto</height>
                         <font>Font-ListInfo</font>
                         <align>center</align>
                         <label>$VAR[Label_Plot]</label>
-                        <visible>!Skin.HasSetting(furniture.showflags) | !Skin.HasSetting(furniture.flags.extradetail)</visible>
-                    </control>
-                    <control type="textbox">
-                        <height>auto</height>
-                        <font>Font-ListInfo</font>
-                        <align>center</align>
-                        <label>$VAR[Label_Plot]</label>
-                        <visible>Skin.HasSetting(furniture.showflags) + Skin.HasSetting(furniture.flags.extradetail)</visible>
                     </control>
                 </control>
                 
@@ -396,7 +386,6 @@
                         <align>right</align>
                         <font>Font-ListInfo-Small-Bold</font>
                         <label>$VAR[Label_ExtraInfo_Icons]</label>
-                        <visible>!Skin.HasSetting(furniture.showflags) | !Skin.HasSetting(furniture.flags.extradetail)</visible>
                     </control>
                 </control>
             </control>

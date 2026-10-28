@@ -909,10 +909,6 @@ msgctxt "#31217"
 msgid "Pixel format"
 msgstr "פורמט פיקסל"
 
-msgctxt "#31218"
-msgid "Show additional info labels with media flags (e.g. ratings and year)"
-msgstr "הצג מידע תוויות נוסף עם דגלי מדיה (למשל דירוגים ושנה)"
-
 msgctxt "#31219"
 msgid "Miscellaneous"
 msgstr "שונות"

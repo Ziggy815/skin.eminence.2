@@ -243,18 +243,6 @@
                 <textcolor>LineLabel</textcolor>
                 <label>$VAR[Label_RSS,   ,]</label>
                 <!-- <visible>Player.HasMedia</visible> -->
-                <visible>!Skin.HasSetting(furniture.showflags) | !Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <bottom>16</bottom>
-                <left>48</left>
-                <right>960</right>
-                <height>32</height>
-                <font>Font-ListInfo-Small-Bold</font>
-                <textcolor>LineLabel</textcolor>
-                <label>$VAR[Label_RSS,   ,]</label>
-                <!-- <visible>Player.HasMedia</visible> -->
-                <visible>Skin.HasSetting(furniture.showflags) + Skin.HasSetting(furniture.flags.extradetail)</visible>
             </control>
         </control>
         <control type="grouplist">
@@ -438,106 +426,13 @@
             
 
             <!-- MPAA -->
-            <control type="group">
-                <width>100</width>
-                <height>64</height>
-                <visible>!String.IsEmpty(ListItem.MPAA)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-                <control type="image">
-                    <centerleft>50%</centerleft>
-                    <top>20</top>
-                    <width>90</width>
-                    <height>30</height>
-                    <texture colordiffuse="LineLabel" border="8">indicator/rating.png</texture>
-                </control>
-                <control type="label">
-                    <centerleft>50%</centerleft>
-                    <width>90</width>
-                    <height>64</height>
-                    <top>2</top>
-                    <textcolor>LineLabel</textcolor>
-                    <font>Font-LineLabel</font>
-                    <aligny>center</aligny>
-                    <align>center</align>
-                    <label fallback="NR">$VAR[Label_MPAA]</label>
-                </control>
-            </control>
 
             <!-- Album Artist -->
-            <control type="image">
-                <left>-12</left>
-                <top>1</top>
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <texture colordiffuse="LineLabel">indicator/artist.png</texture>
-                <visible>!String.IsEmpty(ListItem.AlbumArtist)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-                <visible>Container.Content(songs) | Container.Content(albums)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-20</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.AlbumArtist]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.AlbumArtist)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-                <visible>Container.Content(songs) | Container.Content(albums)</visible>
-            </control>
-            <control type="image">
-                <left>-12</left>
-                <top>1</top>
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <texture colordiffuse="LineLabel">indicator/album.png</texture>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-                <visible>!String.IsEmpty(ListItem.AlbumArtist) | !String.IsEmpty(ListItem.Album)</visible>
-                <visible>Container.Content(songs)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-20</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.Album]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-                <visible>!String.IsEmpty(ListItem.AlbumArtist) | !String.IsEmpty(ListItem.Album)</visible>
-                <visible>Container.Content(songs)</visible>
-            </control>
             
 
 
 
             <!-- Rating -->
-            <control type="image">
-                <left>-12</left>
-                <width>64</width>
-                <height>64</height>
-                <aspectratio>keep</aspectratio>
-                <texture colordiffuse="LineLabel" fallback="indicator/fallback.png">indicator/star10.png</texture>
-                <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
-            <control type="label">
-                <top>2</top>
-                <left>-24</left>
-                <height>64</height>
-                <width>auto</width>
-                <label>$INFO[ListItem.Rating]  </label>
-                <textcolor>LineLabel</textcolor>
-                <font>Font-LineLabel</font>
-                <aligny>center</aligny>
-                <visible>!String.IsEmpty(ListItem.Rating)</visible>
-                <visible>Skin.HasSetting(furniture.flags.extradetail)</visible>
-            </control>
 
         </control>
     </include>
